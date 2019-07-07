@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/RelativeLayout_edit_top"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/top_menu_Hsize" >
+
+        <TextView
+            android:id="@+id/edit_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/near_padding_size"
+            android:layout_marginBottom="@dimen/dimen_10"
+
+            android:layout_toRightOf="@id/edit_back"
+            android:fontFamily="sans-serif-medium"
+            android:lineSpacingExtra="8sp"
+            android:text="@string/lbl_new_note_title"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/lbl_new_note_title"
+
+            android:textStyle="normal" />
+
+        <Button
+        android:id="@+id/edit_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="@dimen/near_padding_size"/>
+
+        <Button
+            android:id="@+id/edit_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/near_padding_size" />
+
+        <android.support.v7.widget.AppCompatSpinner
+            android:id="@+id/edit_kind_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/near_padding_size"
+            android:layout_toLeftOf="@id/edit_save"
+            >
+
+        </android.support.v7.widget.AppCompatSpinner>
+    </RelativeLayout>
+
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/RelativeLayout_edit_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <EditText
+            android:id="@+id/note"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:gravity="top"
+            android:hint="@string/hint_enter_note"
+            android:inputType="textCapSentences|textMultiLine"
+            android:textColorHint="@color/hint_enter_note"
+            android:textSize="@dimen/input_new_note"
+            />
+
+    </RelativeLayout>
+</LinearLayout>

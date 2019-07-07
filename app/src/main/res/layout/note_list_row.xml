@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:foreground="?attr/selectableItemBackground"
+    android:paddingLeft="@dimen/activity_margin"
+    android:paddingTop="@dimen/dimen_10"
+    android:paddingRight="@dimen/activity_margin"
+    android:paddingBottom="@dimen/dimen_10"
+    android:maxHeight="50sp"
+    android:adjustViewBounds="true">
+
+    <TextView
+        android:id="@+id/timestamp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/wordnumber"
+        android:layout_marginTop="@dimen/dimen_10"
+        android:layout_marginRight="@dimen/dot_margin_right"
+        android:includeFontPadding="false"
+        android:lineSpacingExtra="0dp"
+        android:textColor="@color/colorAccent"
+        android:textSize="@dimen/datefont" />
+
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+
+        android:layout_below="@id/timestamp"
+        android:layout_marginTop="@dimen/dimen_10"
+        android:layout_marginRight="@dimen/dot_margin_right"
+        android:includeFontPadding="false"
+        android:lineSpacingExtra="0dp"
+        android:textColor="@color/colorAccent"
+        android:textSize="@dimen/markfont"  />
+
+    <TextView
+        android:id="@+id/kind"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/timestamp"
+        android:layout_alignParentTop="true"
+        android:textColor="@color/timestamp"
+        android:textSize="@dimen/markfont" />
+
+    <TextView
+        android:id="@+id/wordnumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:textSize="@dimen/markfont"
+        />
+
+    <TextView
+        android:id="@+id/weather"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/state"
+        android:layout_alignParentRight="true"
+        android:textSize="@dimen/markfont"
+        />
+
+    <TextView
+        android:id="@+id/state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:textSize="@dimen/markfont"
+        />
+
+    <TextView
+        android:id="@+id/note"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/kind"
+        android:layout_toRightOf="@id/timestamp"
+        android:textColor="@color/note_list_text"
+        android:textSize="@dimen/note_list_text" />
+
+</RelativeLayout>
