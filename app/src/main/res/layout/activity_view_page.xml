@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/RelativeLayout_page_top"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/top_menu_Hsize" >
+
+        <TextView
+            android:id="@+id/page_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/near_padding_size"
+            android:layout_marginBottom="@dimen/dimen_10"
+
+            android:layout_toRightOf="@id/page_back"
+            android:fontFamily="sans-serif-medium"
+            android:lineSpacingExtra="8sp"
+            android:text="@string/lbl_new_note_title"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/lbl_new_note_title"
+
+            android:textStyle="normal" />
+
+        <Button
+            android:id="@+id/page_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="@dimen/near_padding_size"/>
+
+
+        <android.support.v7.widget.AppCompatSpinner
+            android:id="@+id/page_kind_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/near_padding_size"
+            >
+
+        </android.support.v7.widget.AppCompatSpinner>
+    </RelativeLayout>
+
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/RelativeLayout_page_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <TextView
+            android:id="@+id/page_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:gravity="top"
+            android:hint="@string/hint_enter_note"
+            android:inputType="textCapSentences|textMultiLine"
+            android:textColorHint="@color/hint_enter_note"
+            android:textSize="@dimen/input_new_note"
+            />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/edit_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="@dimen/fab_margin"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            app:srcCompat="@android:drawable/ic_dialog_email" />
+    </RelativeLayout>
+</LinearLayout>

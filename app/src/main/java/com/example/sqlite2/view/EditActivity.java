@@ -33,50 +33,93 @@ public class EditActivity extends Activity {
     private TextView weather;
 //    private
 
-    boolean shouldUpdate = false;
+    Boolean shouldUpdate = false;
     private Note note = new Note();
     private int note_id;
     DatabaseHelper db;
 
+    final String tag = "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh:";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.d(tag,"hello edit");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit);
 
+        db = new DatabaseHelper(this);
+
+Log.d(tag,"hello edit2");
         inputNote =findViewById(R.id.edit_text);
         saveButton = findViewById(R.id.edit_save);
         backButton = findViewById(R.id.edit_back);
+
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Log.d(tag,"save");
+
+                if(note_id > -1){
+                    Log.d(tag,"updatestart");
+                    updateNote();
+                    Log.d(tag,"updone");
+                }
+                else if( note_id == -1 && inputNote.getText().toString().length() > 0){
+                    Log.d(tag,"createstart");
+                    createNote();
+                    Log.d(tag,"createdone");
+                }
+                Log.d(tag,"saveok");
+                intent2ViewPage();
+            }
+        });
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d(tag,"backback");
+                finish();
+            }
+        });
+
+
         date = findViewById(R.id.edit_date);
-        weather = findViewById(R.id.weather);
+        //weather = findViewById(R.id.weather);
 
         Intent intent = getIntent();
         int data = intent.getIntExtra("note_id",-1);
-
+        note_id = data;
+        Log.d(tag,"id:"+data);
         if(data == -1){
-            note_id = db.getNotesCount();
+            //note_id = db.getNotesCount();
             shouldUpdate = true;
-            date.setText("");//日期
+            date.setText("7/7");//日期
+            //inputNote.setText("bugbugbug");
         }
         else{
-            note_id = data;
             note = db.getNote(note_id);
-            date.setText(note.getNote());
+            date.setText(note.getTimestamp());
             inputNote.setText(note.getNote());
-            weather.setText(note.getWeather());
+            //weather.setText(note.getWeather());
         }
-
-
-
-
-
-
     }
 
     private void createNote() {
         // inserting note in db and getting
         // newly inserted note id
-        long id = db.insertNote(inputNote.getText().toString(), "日记", weather.getText().toString(), inputNote.getText().toString().length());
-        Log.d("before:",String.valueOf(id));
+
+
+        //note.setWeather(weather.getText().toString());
+        note.setNote(inputNote.getText().toString());
+        note.setWordnumber(note.getNote().length());
+        //note.setKind(kind.getText().toString);
+        //note.setState(state.getText().toString());
+        Log.d(tag,note.getNote()+",f,vx");
+        long id = db.insertNote(note.getNote(), "日记", "晴天", note.getWordnumber());
+        Log.d(tag,"backID:"+id);
+
+        note_id = (int)id;
+        note.setId(note_id);
         // get the newly inserted note from db
     }
 
@@ -92,7 +135,10 @@ public class EditActivity extends Activity {
         //note.setKind();
 //kind need to be add, not use get()
         //note.setState();
-        note.setWeather(weather.getText().toString());
+        //note.setWeather(weather.getText().toString());
+        note.setWeather("下雪");
+        note.setKind("杂记");
+
         note.setWordnumber(inputNote.getText().toString().length());
         // updating note in db String kind, String weather, int wordnumber
         db.updateNote(note);
@@ -101,8 +147,12 @@ public class EditActivity extends Activity {
         
     }
 
-    private void back2fromActivity(){
 
+    private void intent2ViewPage(){
+        Log.d(tag,"inteng2PageView"+note_id);
+        Intent intent = new Intent(EditActivity.this,ViewPage.class);
+        intent.putExtra("note_id", note_id);
+        startActivity(intent);
     }
 
 }

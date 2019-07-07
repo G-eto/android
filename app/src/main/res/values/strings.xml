@@ -8,4 +8,7 @@
     <string name="lbl_edit_note_title">Edit Note</string>
     <string name="hint_enter_note">Enter your note!</string>
 
+    <string name="save">保存</string>
+    <string name="back">返回</string>
+
 </resources>

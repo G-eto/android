@@ -29,6 +29,7 @@
 
         <Button
             android:id="@+id/edit_back"
+            android:hint="@string/back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -37,6 +38,7 @@
 
         <Button
             android:id="@+id/edit_save"
+            android:hint="@string/save"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"

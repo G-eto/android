@@ -85,6 +85,9 @@ public class MainActivity extends AppCompatActivity {
                 recyclerView, new RecyclerTouchListener.ClickListener() {
             @Override
             public void onClick(View view, final int position) {
+                Intent intent = new Intent(MainActivity.this, ViewPage.class);
+                intent.putExtra("note_id", notesList.get(position).getId());
+                startActivity(intent);
             }
 
             @Override
@@ -104,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
         long id = db.insertNote(note, "日记", "晴天", note.length());
         Log.d("before:",String.valueOf(id));
         // get the newly inserted note from db
-        Note n = db.getNote(id);
+        Note n = db.getNote((int)id);
 
         if (n != null) {
             // adding new note to array list at 0 position
@@ -167,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 if (which == 0) {
                     Intent intent = new Intent(MainActivity.this, EditActivity.class);
-                    intent.putExtra("note_id", position);
+                    intent.putExtra("note_id", notesList.get(position).getId());
                     startActivity(intent);
                     //showNoteDialog(true, notesList.get(position), position);
                 } else {
