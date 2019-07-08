@@ -48,7 +48,7 @@ public class EditActivity extends Activity {
 
         db = new DatabaseHelper(this);
 
-Log.d(tag,"hello edit2");
+        Log.d(tag,"hello edit2");
         inputNote =findViewById(R.id.edit_text);
         saveButton = findViewById(R.id.edit_save);
         backButton = findViewById(R.id.edit_back);
@@ -63,14 +63,17 @@ Log.d(tag,"hello edit2");
                     Log.d(tag,"updatestart");
                     updateNote();
                     Log.d(tag,"updone");
+                    intent2ViewPage();
                 }
                 else if( note_id == -1 && inputNote.getText().toString().length() > 0){
                     Log.d(tag,"createstart");
                     createNote();
                     Log.d(tag,"createdone");
+                    intent2Main();
+
                 }
                 Log.d(tag,"saveok");
-                intent2ViewPage();
+
             }
         });
 
@@ -144,7 +147,7 @@ Log.d(tag,"hello edit2");
         db.updateNote(note);
 
         //back to mainActivity
-        
+
     }
 
 
@@ -152,6 +155,13 @@ Log.d(tag,"hello edit2");
         Log.d(tag,"inteng2PageView"+note_id);
         Intent intent = new Intent(EditActivity.this,ViewPage.class);
         intent.putExtra("note_id", note_id);
+        startActivity(intent);
+    }
+
+    private void intent2Main(){
+        Log.d(tag,"inteng2Main"+note_id);
+        Intent intent = new Intent(EditActivity.this,MainActivity.class);
+        //intent.putExtra("note_id", note_id);
         startActivity(intent);
     }
 

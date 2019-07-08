@@ -3,6 +3,7 @@ package com.example.sqlite2.view;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
@@ -14,6 +15,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -28,6 +30,7 @@ import com.example.sqlite2.utils.RecyclerTouchListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.example.sqlite2.utils.OnItemTouchListener;
 
 public class MainActivity extends AppCompatActivity {
     private NotesAdapter mAdapter;
@@ -81,20 +84,38 @@ public class MainActivity extends AppCompatActivity {
          * with options to choose
          * Edit and Delete
          * */
-        recyclerView.addOnItemTouchListener(new RecyclerTouchListener(this,
-                recyclerView, new RecyclerTouchListener.ClickListener() {
-            @Override
-            public void onClick(View view, final int position) {
+//        recyclerView.addOnItemTouchListener(new RecyclerTouchListener(this,
+//                recyclerView, new RecyclerTouchListener.ClickListener() {
+//            @Override
+//            public void onClick(View view, final int position) {
+//                Intent intent = new Intent(MainActivity.this, ViewPage.class);
+//                intent.putExtra("note_id", notesList.get(position).getId());
+//                startActivity(intent);
+//            }
+//
+//            @Override
+//            public void onLongClick(View view, int position) {
+//                showActionsDialog(position);
+//            }
+//        }));
+
+
+        recyclerView.addOnItemTouchListener(new OnItemTouchListener(recyclerView) {
+            //@Override
+            public void onItemClick(RecyclerView.ViewHolder vh) {
+                //item 操作
                 Intent intent = new Intent(MainActivity.this, ViewPage.class);
-                intent.putExtra("note_id", notesList.get(position).getId());
+                intent.putExtra("note_id", notesList.get(vh.getAdapterPosition()).getId());
                 startActivity(intent);
+
             }
 
             @Override
-            public void onLongClick(View view, int position) {
-                showActionsDialog(position);
+            public void onItemLongClick(RecyclerView.ViewHolder vh) {
+                showActionsDialog(vh.getAdapterPosition());
             }
-        }));
+
+        });
     }
 
     /**
@@ -161,7 +182,7 @@ public class MainActivity extends AppCompatActivity {
      * Delete - 0
      */
     private void showActionsDialog(final int position) {
-        CharSequence colors[] = new CharSequence[]{"Edit", "Delete"};
+        CharSequence colors[] = new CharSequence[]{"Edit", "Delete","Test"};
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Choose option");
