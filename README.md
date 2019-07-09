@@ -30,3 +30,32 @@
 2. 编辑过长时不自动隐藏，光标到最下边
 3. 参考一本日记格式
 4. ...
+
+---
+#功能 about DB
+##主页
+1. 删除
+2. getAll（）& count
+3. 
+##查看（have id）
+1. 删除
+2. getNote（）
+3.
+##编辑（have id [-1 || id > -1]）
+1. create() all data(include id, timestamp)
+2. update() note, number, kind, weather, newTime, location, inshort, mood, state
+3. 
+
+#Now class
+####class DBhelper{
+1. long insertNote(String note, String kind, String weather, int wordnumber,
+                           String location, String inshort, String state, int mood) 
+2. Note getNote(int id)
+3. public List<Note> getAllNotes()
+4. public int getNotesCount()
+5. public int updateNote(Note note)
+6. public void deleteNote(Note note)
+7. public List<Note> findNoteByDate(String date)
+
+
+}
