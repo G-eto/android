@@ -122,24 +122,24 @@ public class MainActivity extends AppCompatActivity {
      * Inserting new note in db
      * and refreshing the list
      */
-    private void createNote(String note) {
-        // inserting note in db and getting
-        // newly inserted note id
-        long id = db.insertNote(note, "日记", "晴天", note.length());
-        Log.d("before:",String.valueOf(id));
-        // get the newly inserted note from db
-        Note n = db.getNote((int)id);
-
-        if (n != null) {
-            // adding new note to array list at 0 position
-            notesList.add(0, n);
-
-            // refreshing the list
-            mAdapter.notifyDataSetChanged();
-
-            toggleEmptyNotes();
-        }
-    }
+//    private void createNote(String note) {
+//        // inserting note in db and getting
+//        // newly inserted note id
+//        long id = db.insertNote(note, "日记", "晴天", note.length());
+//        Log.d("before:",String.valueOf(id));
+//        // get the newly inserted note from db
+//        Note n = db.getNote((int)id);
+//
+//        if (n != null) {
+//            // adding new note to array list at 0 position
+//            notesList.add(0, n);
+//
+//            // refreshing the list
+//            mAdapter.notifyDataSetChanged();
+//
+//            toggleEmptyNotes();
+//        }
+//    }
 
     /**
      * Updating note in db and updating
@@ -256,7 +256,7 @@ public class MainActivity extends AppCompatActivity {
                     updateNote(inputNote.getText().toString(), position);
                 } else {
                     // create new note
-                    createNote(inputNote.getText().toString());
+                    //createNote(inputNote.getText().toString());
                 }
             }
         });

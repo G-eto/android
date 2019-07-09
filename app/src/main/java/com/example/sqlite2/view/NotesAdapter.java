@@ -23,12 +23,19 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.MyViewHolder
     public class MyViewHolder extends RecyclerView.ViewHolder{
         public TextView note;
         public TextView dot;
-        public TextView timestamp;
+        public TextView timestamp;//date
         public TextView wordnumber;
         public TextView weather;
-        public  TextView state;
+        public TextView state;
         public TextView time;
         public TextView kind;
+
+        // unCode
+        public TextView inshort;
+        public TextView updatetime;
+        public TextView mood;
+
+
         public MyViewHolder(View view){
             super(view);
             note = view.findViewById(R.id.note);
@@ -39,6 +46,10 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.MyViewHolder
             state = view.findViewById(R.id.state);
             time = view.findViewById(R.id.time);
             kind = view.findViewById(R.id.kind);
+
+            //inshort = view.findViewById(R.id.inshort);
+            //updatetime = view.findViewById(R.id.updatetime);
+            //mood = view.findViewById(R.id.mood);
         }
     }
     public NotesAdapter(Context context, List<Note> notesList){
@@ -59,6 +70,10 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.MyViewHolder
         //holder.state.setText(note.getState());
         holder.time.setText(formatTime(note.getTimestamp()));
         holder.kind.setText(note.getKind()+"  ");
+
+//        holder.updatetime.setText(note.getUpdatetime());
+//        holder.inshort.setText(note.getInshort());
+//        holder.mood.setText(note.getMood());
     }
     public int getItemCount(){
         return notesList.size();

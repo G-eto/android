@@ -22,6 +22,16 @@ public class ViewPage extends Activity {
     private TextView date;
     private TextView weather;
     private TextView output;
+
+    //oncode
+    public TextView wordnumber;
+    public TextView state;
+    public TextView time;
+    public TextView kind;
+    public TextView inshort;
+    public TextView updatetime;
+    public TextView mood;
+
 //    private
 
     boolean shouldUpdate = false;

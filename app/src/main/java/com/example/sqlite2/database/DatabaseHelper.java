@@ -7,7 +7,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import com.example.sqlite2.database.model.Note;
 
@@ -28,6 +30,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
 
         // create notes table
+        Log.d("sql:",Note.CREATE_TABLE);
         db.execSQL(Note.CREATE_TABLE);
     }
 
@@ -41,7 +44,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public long insertNote(String note, String kind, String weather, int wordnumber) {
+    public long insertNote(String note, String kind, String weather, int wordnumber,
+                           String location, String inshort, String state, int mood) {
         // get writable database as we want to write data
         SQLiteDatabase db = this.getWritableDatabase();
         Log.d("hhhhhhhhhhhhhhhhhhhhhinsert:","文本:"+ note +"天气:"+weather+"类别:"+kind);
@@ -49,9 +53,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // `id` and `timestamp` will be inserted automatically.
         // no need to add them
         values.put(Note.COLUMN_NOTE, note);
-        values.put(Note.COLUMN_KIND, kind);
-        values.put(Note.COLUMN_WEATHER, weather);
         values.put(Note.COLUMN_WORDNUMBER, wordnumber);
+        values.put(Note.COLUMN_KIND,kind);
+        values.put(Note.COLUMN_WEATHER,weather);
+        values.put(Note.COLUMN_LOCATION,location);
+        values.put(Note.COLUMN_INSHORT,inshort);
+        values.put(Note.COLUMN_MOOD, mood);
+        values.put(Note.COLUMN_STATE,state);
 
         // insert row
         long id = db.insert(Note.TABLE_NAME, null, values);
@@ -65,12 +73,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public Note getNote(int id) {
         // get readable database as we are not inserting anything
+        Log.d("baababbabababaadbd:"," "+id);
         SQLiteDatabase db = this.getReadableDatabase();
         //id++;
         Log.d("hhhhhgetNote(id)::::::",String.valueOf(id));
         Cursor cursor = db.query(Note.TABLE_NAME,
                 new String[]{Note.COLUMN_ID, Note.COLUMN_NOTE, Note.COLUMN_TIMESTAMP,
-                        Note.COLUMN_KIND, Note.COLUMN_WEATHER, Note.COLUMN_WORDNUMBER},
+                        Note.COLUMN_WORDNUMBER, Note.COLUMN_KIND, Note.COLUMN_WEATHER,
+                        Note.COLUMN_UPDATETIME, Note.COLUMN_LOCATION, Note.COLUMN_INSHORT,
+                        Note.COLUMN_MOOD, Note.COLUMN_STATE},
                 Note.COLUMN_ID + "=?",
                 new String[]{String.valueOf(id)},
                 null, null, null, null);
@@ -84,8 +95,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 cursor.getString(cursor.getColumnIndex(Note.COLUMN_NOTE)),
                 cursor.getString(cursor.getColumnIndex(Note.COLUMN_TIMESTAMP)),
                 cursor.getInt(cursor.getColumnIndex(Note.COLUMN_WORDNUMBER)),
+                cursor.getString(cursor.getColumnIndex(Note.COLUMN_KIND)),
                 cursor.getString(cursor.getColumnIndex(Note.COLUMN_WEATHER)),
-                cursor.getString(cursor.getColumnIndex(Note.COLUMN_KIND)));
+                cursor.getString(cursor.getColumnIndex(Note.COLUMN_UPDATETIME)),
+                cursor.getString(cursor.getColumnIndex(Note.COLUMN_LOCATION)),
+                cursor.getString(cursor.getColumnIndex(Note.COLUMN_INSHORT)),
+                cursor.getInt(cursor.getColumnIndex(Note.COLUMN_MOOD)),
+                cursor.getString(cursor.getColumnIndex(Note.COLUMN_STATE)));
 
         // close the db connection
         cursor.close();
@@ -110,9 +126,14 @@ Log.d("娶到媳妇：",note.getNote()+"" +note.getKind()+""+note.getWordnumber(
                 note.setId(cursor.getInt(cursor.getColumnIndex(Note.COLUMN_ID)));
                 note.setNote(cursor.getString(cursor.getColumnIndex(Note.COLUMN_NOTE)));
                 note.setTimestamp(cursor.getString(cursor.getColumnIndex(Note.COLUMN_TIMESTAMP)));
+                note.setWordnumber(cursor.getInt(cursor.getColumnIndex(Note.COLUMN_WORDNUMBER)));
                 note.setKind(cursor.getString(cursor.getColumnIndex(Note.COLUMN_KIND)));
                 note.setWeather(cursor.getString(cursor.getColumnIndex(Note.COLUMN_WEATHER)));
-                note.setWordnumber(cursor.getInt(cursor.getColumnIndex(Note.COLUMN_WORDNUMBER)));
+                note.setUpdatetime(cursor.getString(cursor.getColumnIndex(Note.COLUMN_UPDATETIME)));
+                note.setLocation(cursor.getString(cursor.getColumnIndex(Note.COLUMN_LOCATION)));
+                note.setInshort(cursor.getString(cursor.getColumnIndex(Note.COLUMN_INSHORT)));
+                note.setMood(cursor.getInt(cursor.getColumnIndex(Note.COLUMN_MOOD)));
+                note.setState(cursor.getString(cursor.getColumnIndex(Note.COLUMN_STATE)));
                 notes.add(note);
             } while (cursor.moveToNext());
         }
@@ -138,6 +159,11 @@ Log.d("娶到媳妇：",note.getNote()+"" +note.getKind()+""+note.getWordnumber(
     }
 
     public int updateNote(Note note) {
+
+        SimpleDateFormat sdf = new SimpleDateFormat();// 格式化时间
+        sdf.applyPattern("yyyy-MM-dd HH:mm:ss");// a为am/pm的标记
+        Date date = new Date();// 获取当前时间
+
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -145,6 +171,12 @@ Log.d("娶到媳妇：",note.getNote()+"" +note.getKind()+""+note.getWordnumber(
         values.put(Note.COLUMN_WORDNUMBER, note.getWordnumber());
         values.put(Note.COLUMN_KIND, note.getKind());
         values.put(Note.COLUMN_WEATHER, note.getWeather());
+
+        values.put(Note.COLUMN_LOCATION,note.getLocation());
+        values.put(Note.COLUMN_INSHORT,note.getInshort());
+        values.put(Note.COLUMN_MOOD, note.getMood());
+        values.put(Note.COLUMN_STATE,note.getState());
+        values.put(Note.COLUMN_UPDATETIME,sdf.format(date));
         // updating row
         return db.update(Note.TABLE_NAME, values, Note.COLUMN_ID + " = ?",
                 new String[]{String.valueOf(note.getId())});
@@ -179,6 +211,11 @@ Log.d("娶到媳妇：",note.getNote()+"" +note.getKind()+""+note.getWordnumber(
                 note.setKind(cursor.getString(cursor.getColumnIndex(Note.COLUMN_KIND)));
                 note.setWeather(cursor.getString(cursor.getColumnIndex(Note.COLUMN_WEATHER)));
                 note.setWordnumber(cursor.getInt(cursor.getColumnIndex(Note.COLUMN_WORDNUMBER)));
+                note.setUpdatetime(cursor.getString(cursor.getColumnIndex(Note.COLUMN_UPDATETIME)));
+                note.setLocation(cursor.getString(cursor.getColumnIndex(Note.COLUMN_LOCATION)));
+                note.setInshort(cursor.getString(cursor.getColumnIndex(Note.COLUMN_INSHORT)));
+                note.setMood(cursor.getInt(cursor.getColumnIndex(Note.COLUMN_MOOD)));
+                note.setState(cursor.getString(cursor.getColumnIndex(Note.COLUMN_STATE)));
                 notes.add(note);
             } while (cursor.moveToNext());
         }

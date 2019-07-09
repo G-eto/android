@@ -111,6 +111,13 @@ public class EditActivity extends Activity {
         // inserting note in db and getting
         // newly inserted note id
 
+        note.setState("save");
+        note.setWeather("下雪");
+        note.setKind("杂记");
+        note.setMood(10);
+        note.setInshort("happy day");
+        note.setLocation("南口");
+
 
         //note.setWeather(weather.getText().toString());
         note.setNote(inputNote.getText().toString());
@@ -118,7 +125,8 @@ public class EditActivity extends Activity {
         //note.setKind(kind.getText().toString);
         //note.setState(state.getText().toString());
         Log.d(tag,note.getNote()+",f,vx");
-        long id = db.insertNote(note.getNote(), "日记", "晴天", note.getWordnumber());
+        long id = db.insertNote(note.getNote(), "日记", "晴天",
+                note.getWordnumber(),note.getLocation(), note.getInshort(), note.getState(), note.getMood());
         Log.d(tag,"backID:"+id);
 
         note_id = (int)id;
@@ -135,13 +143,15 @@ public class EditActivity extends Activity {
         //Note n = notesList.get(position);
         // updating note text
         note.setNote(inputNote.getText().toString());
-        //note.setKind();
 //kind need to be add, not use get()
-        //note.setState();
+        note.setState("save");
         //note.setWeather(weather.getText().toString());
         note.setWeather("下雪");
         note.setKind("杂记");
-
+        note.setMood(10);
+        note.setInshort("happy day");
+        note.setLocation("南口");
+        note.setUpdatetime("new time");
         note.setWordnumber(inputNote.getText().toString().length());
         // updating note in db String kind, String weather, int wordnumber
         db.updateNote(note);
@@ -149,7 +159,6 @@ public class EditActivity extends Activity {
         //back to mainActivity
 
     }
-
 
     private void intent2ViewPage(){
         Log.d(tag,"inteng2PageView"+note_id);
