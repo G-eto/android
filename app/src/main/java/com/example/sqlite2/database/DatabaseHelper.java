@@ -161,7 +161,7 @@ Log.d("娶到媳妇：",note.getNote()+"" +note.getKind()+""+note.getWordnumber(
     public int updateNote(Note note) {
 
         SimpleDateFormat sdf = new SimpleDateFormat();// 格式化时间
-        sdf.applyPattern("yyyy-MM-dd HH:mm:ss");// a为am/pm的标记
+        sdf.applyPattern("yyyy-MM-dd HH:mm:ss   ");// a为am/pm的标记
         Date date = new Date();// 获取当前时间
 
         SQLiteDatabase db = this.getWritableDatabase();

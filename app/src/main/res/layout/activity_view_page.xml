@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:id="@+id/view_page">
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -48,25 +49,29 @@
         </android.support.v7.widget.AppCompatSpinner>
     </RelativeLayout>
 
-
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/RelativeLayout_page_bottom"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
-
+        android:layout_height="match_parent">
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+    >
         <TextView
             android:id="@+id/page_text"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_size"
+            android:paddingBottom="@dimen/text_paddindbutton_size"
             android:background="@android:color/transparent"
             android:gravity="top"
             android:hint="@string/hint_enter_note"
-            android:inputType="textCapSentences|textMultiLine"
+            android:minHeight="@dimen/fill_scream"
             android:textColorHint="@color/hint_enter_note"
             android:textSize="@dimen/input_new_note"
-            />
-
+            android:scrollbars="none"/>
+    </ScrollView>
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/edit_fab"
             android:layout_width="wrap_content"

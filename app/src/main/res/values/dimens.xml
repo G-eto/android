@@ -18,10 +18,13 @@
     <dimen name="textfont">16sp</dimen>
     
     //组件size
-    <dimen name="top_menu_Hsize">80dp</dimen>
+    <dimen name="top_menu_Hsize">60dp</dimen>
+    <dimen name="fill_scream">550dp</dimen>
     
     //padding
     <dimen name="boundary_button_padding_size">5dp</dimen>
     <dimen name="near_padding_size">15dp</dimen>
+    <dimen name="margin_size">20dp</dimen>
+    <dimen name="text_paddindbutton_size">100dp</dimen>
 
 </resources>
