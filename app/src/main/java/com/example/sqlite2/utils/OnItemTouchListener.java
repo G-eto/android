@@ -1,6 +1,5 @@
 package com.example.sqlite2.utils;
 
-import android.content.Intent;
 import android.support.v4.view.GestureDetectorCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -8,8 +7,6 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
-
-import com.example.sqlite2.view.ViewPage;
 
 public abstract class OnItemTouchListener implements RecyclerView.OnItemTouchListener {
 
@@ -75,6 +72,24 @@ public abstract class OnItemTouchListener implements RecyclerView.OnItemTouchLis
 
         return false;
     }
+
+//    public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
+//                           float velocityY) {
+//        //如果第一个触点事件的X坐标减去第二个触点事件的X坐标大于FLIP_DISTANCE
+//        //也就是手势从右往左滑
+//        if(e1.getX() - e2.getX() > FLIP_DISTANCE){
+//            onPageFling('L');
+//
+//            return true;
+//        }
+//        //如果第二个触点事件的X坐标减去第一个触点事件的X坐标大于FLIP_DISTANCE
+//        //也就是手势从左往右滑
+//        else if(e2.getX() - e1.getX() > FLIP_DISTANCE){
+//            onPageFling('R');
+//            return true;
+//        }
+//        return false;
+//    }
 
 
 
