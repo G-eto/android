@@ -10,7 +10,6 @@
         android:id="@+id/RelativeLayout_page_top"
         android:layout_width="match_parent"
         android:layout_height="@dimen/top_menu_Hsize">
-
         <TextView
             android:id="@+id/page_date"
             android:layout_width="wrap_content"
@@ -22,40 +21,27 @@
             android:layout_toEndOf="@id/page_back"
             android:fontFamily="sans-serif-medium"
             android:lineSpacingExtra="8sp"
-            android:text="@string/lbl_new_note_title"
+            android:text="12日/7月"
             android:textColor="@color/colorAccent"
-            android:textSize="@dimen/lbl_new_note_title"
+            android:textSize="@dimen/datefont"
             android:textStyle="normal" />
 
         <Button
             android:id="@+id/page_back"
+            android:text="@string/back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:stateListAnimator="@null"
+            android:background="@null"
+            android:textSize="@dimen/buttonfont_size"
             android:layout_centerVertical="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="@dimen/near_padding_size"/>
+            android:layout_alignParentStart="true"/>
 
-
-        <android.support.v7.widget.AppCompatSpinner
-            android:id="@+id/page_kind_spinner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toStartOf="@id/page_menu_spinner"
-            android:layout_margin="@dimen/near_padding_size"
-            />
-        <android.support.v7.widget.AppCompatSpinner
-            android:id="@+id/page_menu_spinner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_alignParentEnd="true"
-            android:layout_margin="@dimen/near_padding_size"
-            >
-
-        </android.support.v7.widget.AppCompatSpinner>
     </RelativeLayout>
-
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2px"
+        android:background="#000000"/>
     <RelativeLayout
         android:id="@+id/RelativeLayout_page_bottom"
         android:layout_width="match_parent"
@@ -68,20 +54,210 @@
             android:layout_marginTop="0dp"
             android:clickable="false"
             android:scrollbars="none">
-
-            <TextView
-                android:id="@+id/page_text"
+            <RelativeLayout
+                android:id="@+id/RelativeLayout_page"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/margin_size"
-                android:background="@android:color/transparent"
-                android:gravity="top"
-                android:hint="@string/hint_enter_note"
-                android:minHeight="@dimen/fill_scream"
-                android:paddingBottom="@dimen/text_paddindbutton_size"
-                android:scrollbars="none"
-                android:textColorHint="@color/hint_enter_note"
-                android:textSize="@dimen/input_new_note" />
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:id="@+id/RelativeLayout_page_mood"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/top_menu2_Hsize">
+                    <TextView
+                        android:id="@+id/page_mood_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginRight="@dimen/margin_size_top"
+                        android:layout_toLeftOf="@id/page_mood"
+                        android:textSize="@dimen/datefont"
+                        android:text="@string/happy"
+                        />
+                    <TextView
+                        android:id="@+id/page_mood"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:textSize="@dimen/datefont"
+                        android:text="Mood:O O O O O O O O O"
+                        />
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/page_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/RelativeLayout_page_mood"
+                    android:layout_marginStart="@dimen/margin_size"
+                    android:layout_marginTop="@dimen/margin_size"
+                    android:layout_marginEnd="@dimen/margin_size"
+                    android:background="@android:color/transparent"
+                    android:gravity="top"
+                    android:hint="@string/hint_enter_note"
+                    android:paddingBottom="@dimen/margin_size"
+                    android:scrollbars="none"
+                    android:textColorHint="@color/hint_enter_note"
+                    android:textSize="@dimen/input_new_note" />
+
+                <RelativeLayout
+                    android:id="@+id/page_kind_relative"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/page_text">
+                    <TextView
+                        android:id="@+id/page_kind_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/margin_size_top"
+                        android:textSize="@dimen/textfont"
+                        android:text="@string/star"
+                        android:layout_alignParentStart="true"
+                        />
+                    <TextView
+                        android:id="@+id/page_kind"
+                        android:layout_marginTop="@dimen/margin_size_top"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/page_kind_icon"
+                        android:layout_alignBottom="@id/page_kind_icon"
+                        android:textSize="@dimen/textfont"
+                        android:text="日记"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/page_weather_relative"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/page_kind_relative">
+                    <TextView
+                        android:id="@+id/page_weather_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/margin_size_top"
+                        android:textSize="@dimen/textfont"
+                        android:text="@string/eye"
+                        android:layout_alignParentStart="true"
+                        />
+                    <TextView
+                        android:id="@+id/page_weather"
+                        android:layout_marginTop="@dimen/margin_size_top"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/page_weather_icon"
+                        android:layout_alignBottom="@id/page_weather_icon"
+                        android:textSize="@dimen/textfont"
+                        android:text="snow"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/page_wordnumber_relative"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/page_weather_relative">
+                    <TextView
+                        android:id="@+id/page_wordnumber_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/margin_size_top"
+                        android:textSize="@dimen/textfont"
+                        android:text="@string/fontb"
+                        android:layout_alignParentStart="true"
+                        />
+                    <TextView
+                        android:id="@+id/page_wordnumber"
+                        android:layout_marginTop="@dimen/margin_size_top"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@id/page_wordnumber_icon"
+                        android:layout_toRightOf="@id/page_wordnumber_icon"
+                        android:textSize="@dimen/textfont"
+                        android:text="字数："/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/page_time_relative"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/page_wordnumber_relative">
+                    <TextView
+                        android:id="@+id/page_time_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/margin_size_top"
+                        android:textSize="@dimen/textfont"
+                        android:text="@string/time"
+                        android:layout_alignParentStart="true"
+                        />
+                    <TextView
+                        android:id="@+id/page_time"
+                        android:layout_marginTop="@dimen/margin_size_top"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@id/page_time_icon"
+                        android:layout_toRightOf="@id/page_time_icon"
+                        android:textSize="@dimen/textfont"
+                        android:text="23:48"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/page_location_relative"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/page_time_relative">
+                    <TextView
+                        android:id="@+id/page_location_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/margin_size_top"
+                        android:textSize="@dimen/textfont"
+                        android:text="@string/location"
+                        android:layout_alignParentStart="true"
+                        />
+                    <TextView
+                        android:id="@+id/page_location"
+                        android:layout_marginTop="@dimen/margin_size_top"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@id/page_location_icon"
+                        android:layout_toRightOf="@id/page_location_icon"
+                        android:textSize="@dimen/textfont"
+                        android:text="北京南口"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/page_inshort_relative"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/page_location_relative"
+                    android:paddingBottom="@dimen/boundary_button_padding_size">
+                    <TextView
+                        android:id="@+id/page_inshort_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/margin_size_top"
+                        android:textSize="@dimen/textfont"
+                        android:text="@string/message"
+                        android:layout_alignParentStart="true"
+                        />
+                    <TextView
+                        android:id="@+id/page_inshort"
+                        android:layout_marginTop="@dimen/margin_size_top"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@id/page_inshort_icon"
+                        android:layout_toRightOf="@id/page_inshort_icon"
+                        android:textSize="@dimen/textfont"
+                        android:text="inshort:It's the best I have ever seen."/>
+                </RelativeLayout>
+
+
+            </RelativeLayout>
+
+
+
+
+
         </ScrollView>
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/edit_fab"

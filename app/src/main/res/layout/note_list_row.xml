@@ -9,20 +9,21 @@
     android:paddingRight="@dimen/activity_margin"
     android:paddingBottom="@dimen/dimen_10"
     android:maxHeight="50sp"
-    android:adjustViewBounds="true">
+    android:adjustViewBounds="true"
+    android:background="@drawable/boder">
 
     <TextView
         android:id="@+id/timestamp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@id/wordnumber"
         android:layout_marginTop="@dimen/dimen_10"
         android:layout_marginRight="@dimen/dot_margin_right"
         android:includeFontPadding="false"
         android:lineSpacingExtra="0dp"
         android:textColor="@color/colorAccent"
-        android:textSize="@dimen/datefont" />
+        android:textSize="@dimen/datefont"
+        android:text="date:7/11"/>
 
     <TextView
         android:id="@+id/time"
@@ -36,7 +37,8 @@
         android:includeFontPadding="false"
         android:lineSpacingExtra="0dp"
         android:textColor="@color/colorAccent"
-        android:textSize="@dimen/markfont"  />
+        android:textSize="@dimen/markfont"
+        android:text="time:8:24"/>
 
     <TextView
         android:id="@+id/kind"
@@ -45,26 +47,9 @@
         android:layout_toRightOf="@id/timestamp"
         android:layout_alignParentTop="true"
         android:textColor="@color/timestamp"
-        android:textSize="@dimen/markfont" />
-
-    <TextView
-        android:id="@+id/wordnumber"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
         android:textSize="@dimen/markfont"
-        />
+        android:text="kind:日记"/>
 
-    <TextView
-        android:id="@+id/weather"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@id/state"
-        android:layout_alignParentRight="true"
-        android:textSize="@dimen/markfont"
-        />
 
     <TextView
         android:id="@+id/state"
@@ -73,6 +58,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:textSize="@dimen/markfont"
+        android:text="state:已保存"
         />
 
     <TextView
@@ -82,6 +68,42 @@
         android:layout_below="@id/kind"
         android:layout_toRightOf="@id/timestamp"
         android:textColor="@color/note_list_text"
-        android:textSize="@dimen/note_list_text" />
+        android:textSize="@dimen/note_list_text"
+        android:text="note:hahahahah"/>
+
+
+    <TextView
+        android:id="@+id/mood"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/kind"
+        android:text="mood:10"/>
+
+    <TextView
+        android:id="@+id/location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/note"
+        android:layout_alignParentRight="true"
+        android:text="location:南口"/>
+
+    <TextView
+        android:id="@+id/wordnumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/note"
+        android:layout_toRightOf="@id/weather"
+        android:text="Wnumber:9"
+        android:textSize="@dimen/markfont" />
+
+    <TextView
+        android:id="@+id/weather"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/note"
+        android:layout_alignLeft="@id/note"
+        android:textSize="@dimen/markfont"
+        android:text="weather:晴"
+        />
 
 </RelativeLayout>

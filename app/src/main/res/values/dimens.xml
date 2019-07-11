@@ -12,19 +12,27 @@
     <dimen name="timestamp">14sp</dimen>
     <dimen name="note_list_text">18sp</dimen>
 
+    //edit high size
+    <dimen name="edit_text_high_size">400dp</dimen>
+
     //fontSize
-    <dimen name="datefont">22sp</dimen>
+    <dimen name="datefont">30sp</dimen>
     <dimen name="markfont">14sp</dimen>
     <dimen name="textfont">16sp</dimen>
     
     //组件size
     <dimen name="top_menu_Hsize">60dp</dimen>
+    <dimen name="top_menu2_Hsize">40dp</dimen>
     <dimen name="fill_scream">550dp</dimen>
     
     //padding
     <dimen name="boundary_button_padding_size">5dp</dimen>
     <dimen name="near_padding_size">15dp</dimen>
     <dimen name="margin_size">20dp</dimen>
-    <dimen name="text_paddindbutton_size">100dp</dimen>
+    <dimen name="margin_size_top">10dp</dimen>
+    <dimen name="text_paddindbutton_size">50dp</dimen>
+
+    //button size
+    <dimen name="buttonfont_size">30sp</dimen>
 
 </resources>

@@ -1,6 +1,7 @@
 package com.example.sqlite2.view;
 
 import android.app.Activity;
+import android.graphics.Typeface;
 import android.os.Bundle;
 
 import com.example.sqlite2.R;
@@ -12,6 +13,7 @@ import android.net.Uri;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -52,6 +54,10 @@ public class EditActivity extends Activity {
         inputNote =findViewById(R.id.edit_text);
         saveButton = findViewById(R.id.edit_save);
         backButton = findViewById(R.id.edit_back);
+
+        Typeface tf = Typeface.createFromAsset(getAssets(), "iconfont.ttf");
+        saveButton.setTypeface(tf);
+        backButton.setTypeface(tf);
 
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override

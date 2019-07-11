@@ -1,0 +1,85 @@
+<RelativeLayout android:layout_width="match_parent"
+    android:layout_height="@dimen/top_menu_Hsize"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/boder"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:showIn="@layout/activity_view_page">
+    <TextView
+        android:id="@+id/page_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="@dimen/dimen_10"
+        android:includeFontPadding="false"
+        android:lineSpacingExtra="0dp"
+        android:textColor="@color/colorAccent"
+        android:textSize="@dimen/datefont"
+        android:text="date:7/11"/>
+
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+
+        android:layout_below="@id/timestamp"
+        android:layout_marginTop="@dimen/dimen_10"
+        android:layout_marginRight="@dimen/dot_margin_right"
+        android:includeFontPadding="false"
+        android:lineSpacingExtra="0dp"
+        android:textColor="@color/colorAccent"
+        android:textSize="@dimen/markfont"
+        android:text="time:8:24"/>
+
+    <TextView
+        android:id="@+id/kind"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/timestamp"
+        android:layout_alignParentTop="true"
+        android:textColor="@color/timestamp"
+        android:textSize="@dimen/markfont"
+        android:text="kind:日记"/>
+
+
+    <TextView
+        android:id="@+id/state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:textSize="@dimen/markfont"
+        android:text="state:已保存"
+        />
+
+    <TextView
+        android:id="@+id/mood"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/kind"
+        android:text="mood:10"/>
+
+    <TextView
+        android:id="@+id/location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:text="location:南口"/>
+
+    <TextView
+        android:id="@+id/wordnumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/weather"
+        android:text="Wnumber:9"
+        android:textSize="@dimen/markfont" />
+
+    <TextView
+        android:id="@+id/weather"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:textSize="@dimen/markfont"
+        android:text="weather:晴"
+        />
+</RelativeLayout>

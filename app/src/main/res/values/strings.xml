@@ -8,7 +8,31 @@
     <string name="lbl_edit_note_title">Edit Note</string>
     <string name="hint_enter_note">Enter your note!</string>
 
-    <string name="save">保存</string>
-    <string name="back">返回</string>
+    <!--icon font-->
+    <string name="back">&#xe77f;</string>
+    <string name="time">&#xe784;</string>
+    <string name="reload">&#xe788;</string>
+    <string name="message">&#xe78a;</string>
+    <string name="setting">&#xe78e;</string>
+    <string name="happy">&#xe783;</string>
+    <string name="eye">&#xe78f;</string>
+    <string name="location">&#xe790;</string>
+    <string name="analysis">&#xe7af;</string>
+    <string name="copy">&#xe7bc;</string>
+    <string name="delete">&#xe7c3;</string>
+    <string name="calendar">&#xe7d3;</string>
+    <string name="heart">&#xe7df;</string>
+    <string name="star">&#xe7e0;</string>
+    <string name="fill_star">&#xe86a;</string>
+    <string name="share">&#xe7e7;</string>
+    <string name="setting_list">&#xe7f4;</string>
+    <string name="fonta">&#xe7f7;</string>
+    <string name="fontb">&#xe7f8;</string>
+    <string name="save">&#xe7fc;</string>
+    <string name="zhihu">&#xe87c;</string>
+    <string name="QQ">&#xe882;</string>
+    <string name="wechat">&#xe883;</string>
+    <string name="search">&#xe8ef;</string>
+    <string name="puls">&#xe8fe;</string>
 
 </resources>

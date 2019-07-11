@@ -6,6 +6,10 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -31,16 +35,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.sqlite2.utils.OnItemTouchListener;
+import com.github.florent37.materialviewpager.MaterialViewPager;
+import com.github.florent37.materialviewpager.header.HeaderDesign;
 
 public class MainActivity extends AppCompatActivity {
     private NotesAdapter mAdapter;
     private List<Note> notesList = new ArrayList<>();
     private CoordinatorLayout coordinatorLayout;
     private RecyclerView recyclerView;
+    private MaterialViewPager materialViewPager;
     private TextView noNotesView;
 
     private DatabaseHelper db;
 
+    static final int TAPS = 3;
 
 
     @Override
@@ -53,6 +61,8 @@ public class MainActivity extends AppCompatActivity {
 
         coordinatorLayout = findViewById(R.id.coordinator_layout);
         recyclerView = findViewById(R.id.recycler_view);
+        //materialViewPager = findViewById(R.id.materialViewPager_everyday);
+
         noNotesView = findViewById(R.id.empty_notes_view);
 
         db = new DatabaseHelper(this);
@@ -77,7 +87,11 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.addItemDecoration(new MyDividerItemDecoration(this, LinearLayoutManager.VERTICAL, 16));
         recyclerView.setAdapter(mAdapter);
 
-        toggleEmptyNotes();
+
+
+
+
+
 
         /**
          * On long press on RecyclerView item, open alert dialog
@@ -116,6 +130,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
+        toggleEmptyNotes();
     }
 
     /**

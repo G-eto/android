@@ -32,8 +32,9 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.MyViewHolder
 
         // unCode
         public TextView inshort;
-        public TextView updatetime;
+//        public TextView updatetime;
         public TextView mood;
+        public TextView location;
 
 
         public MyViewHolder(View view){
@@ -48,8 +49,8 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.MyViewHolder
             kind = view.findViewById(R.id.kind);
 
             //inshort = view.findViewById(R.id.inshort);
-            //updatetime = view.findViewById(R.id.updatetime);
-            //mood = view.findViewById(R.id.mood);
+            mood = view.findViewById(R.id.mood);
+            location = view.findViewById(R.id.location);
         }
     }
     public NotesAdapter(Context context, List<Note> notesList){
@@ -75,7 +76,8 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.MyViewHolder
 
 //        holder.updatetime.setText(note.getUpdatetime());
 //        holder.inshort.setText(note.getInshort());
-//        holder.mood.setText(note.getMood());
+        holder.mood.setText(note.getMood()+" ");
+        holder.location.setText(note.getLocation());
     }
     public int getItemCount(){
         return notesList.size();

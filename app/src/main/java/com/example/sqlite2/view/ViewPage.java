@@ -3,6 +3,7 @@ package com.example.sqlite2.view;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -29,6 +30,10 @@ import com.example.sqlite2.database.model.Note;
 import com.example.sqlite2.utils.OnItemTouchListener;
 import com.example.sqlite2.utils.OnPageTouchListener;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class ViewPage extends Activity {
 
     View view;
@@ -46,6 +51,15 @@ public class ViewPage extends Activity {
     public TextView inshort;
     public TextView updatetime;
     public TextView mood;
+    public TextView location;
+
+    public TextView wordnumber_icon;
+    public TextView weather_icon;
+    public TextView location_icon;
+    public TextView kind_icon;
+    public TextView inshort_icon;
+    public TextView updatetime_icon;
+    public TextView mood_icon;
 
 //    private
 
@@ -68,14 +82,40 @@ public class ViewPage extends Activity {
         dbcount = db.getNotesCount();
         output = findViewById(R.id.page_text);
         date = findViewById(R.id.page_date);
-        //weather = findViewById(R.id.weather);
-
+        inshort = findViewById(R.id.page_inshort);
         editfab = findViewById(R.id.edit_fab);
         backButton = findViewById(R.id.page_back);
         output.setMovementMethod(ScrollingMovementMethod.getInstance());
 
         ScrollView scroll = findViewById(R.id.src_over);
         scroll.setVerticalScrollBarEnabled(false);
+
+        wordnumber = findViewById(R.id.page_wordnumber);
+        weather = findViewById(R.id.page_weather);
+        location = findViewById(R.id.page_location);
+        kind = findViewById(R.id.page_kind);
+        updatetime = findViewById(R.id.page_time);
+        mood = findViewById(R.id.page_mood);
+
+        inshort_icon = findViewById(R.id.page_inshort_icon);
+        wordnumber_icon = findViewById(R.id.page_wordnumber_icon);
+        weather_icon = findViewById(R.id.page_weather_icon);
+        location_icon = findViewById(R.id.page_location_icon);
+        kind_icon = findViewById(R.id.page_kind_icon);
+        updatetime_icon = findViewById(R.id.page_time_icon);
+        mood_icon = findViewById(R.id.page_mood_icon);
+
+        Typeface tf = Typeface.createFromAsset(getAssets(), "iconfont.ttf");
+        inshort_icon.setTypeface(tf);
+        backButton.setTypeface(tf);
+        wordnumber_icon.setTypeface(tf);
+        weather_icon.setTypeface(tf);
+        location_icon.setTypeface(tf);
+        kind_icon.setTypeface(tf);
+        inshort_icon.setTypeface(tf);
+        updatetime_icon.setTypeface(tf);
+        mood_icon.setTypeface(tf);
+
 
         editfab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -162,9 +202,19 @@ public class ViewPage extends Activity {
 
     public void DisplayNote(int id){
         note = db.getNote(id);
-        date.setText(note.getTimestamp());
+        date.setText(formatDate(note.getTimestamp()));
         output.setText(note.getNote());
-        //weather.setText(note.getWeather());
+        weather.setText(note.getWeather());
+
+        //oncode
+        wordnumber.setText(note.getWordnumber()+"字");
+        //time
+        kind.setText(note.getKind());
+        inshort.setText(note.getInshort());
+        updatetime.setText(note.getUpdatetime());
+        mood.setText(note.getMood()+"级");
+        location.setText(note.getLocation());
+
     }
 
     private void Display(String eventType, MotionEvent event){
@@ -184,5 +234,17 @@ public class ViewPage extends Activity {
         msg += "触点尺寸："+String.valueOf(size)+"\n";
 
         Log.d("hhhhhhhhhhhhhhhhhh:",msg);
+    }
+
+    private String formatDate(String dateStr){
+        try{
+            SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Date date = fmt.parse(dateStr);
+            SimpleDateFormat fmtOut = new SimpleDateFormat("MM/dd");
+            return fmtOut.format(date);
+        }catch (ParseException e){
+
+        }
+        return "";
     }
 }
