@@ -27,7 +27,7 @@ public class RecyclerViewFragment extends Fragment {
     }
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mRecyclerView=view.findViewById(R.id.note);
+        mRecyclerView=view.findViewById(R.id.dialog_input);
         for (int i=0;i<ITEMS;i++){
             items.add(new Object());
 

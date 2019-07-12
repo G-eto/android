@@ -2,7 +2,6 @@ package com.example.sqlite2.view;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +14,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.SimpleTimeZone;
 
 public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.MyViewHolder> {
     private Context context;
@@ -39,7 +37,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.MyViewHolder
 
         public MyViewHolder(View view){
             super(view);
-            note_text = view.findViewById(R.id.note);
+            note_text = view.findViewById(R.id.dialog_input);
             //dot = view.findViewById(R.id.dot);
             timestamp = view.findViewById(R.id.timestamp);
             wordnumber = view.findViewById(R.id.wordnumber);

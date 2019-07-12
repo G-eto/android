@@ -15,7 +15,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginStart="@dimen/near_padding_size"
             android:layout_marginBottom="@dimen/dimen_10"
 
             android:layout_toEndOf="@id/page_back"
@@ -23,7 +22,7 @@
             android:lineSpacingExtra="8sp"
             android:text="12日/7月"
             android:textColor="@color/colorAccent"
-            android:textSize="@dimen/datefont"
+            android:textSize="@dimen/Title"
             android:textStyle="normal" />
 
         <Button
@@ -36,6 +35,41 @@
             android:textSize="@dimen/buttonfont_size"
             android:layout_centerVertical="true"
             android:layout_alignParentStart="true"/>
+
+        <Button
+            android:id="@+id/delete_page"
+            android:layout_width="@dimen/button_2_Wsize"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/margin_size"
+            android:stateListAnimator="@null"
+            android:background="@null"
+            android:text="@string/delete"
+            android:textSize="@dimen/buttonfont_size"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"/>
+
+
+        <Button
+            android:id="@+id/copy_page"
+            android:layout_width="@dimen/button_2_Wsize"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/delete_page"
+            android:stateListAnimator="@null"
+            android:background="@null"
+            android:text="@string/copy"
+            android:textSize="@dimen/buttonfont_size"
+            android:layout_centerVertical="true"/>
+
+        <Button
+            android:id="@+id/share_page"
+            android:layout_width="@dimen/button_2_Wsize"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/copy_page"
+            android:stateListAnimator="@null"
+            android:background="@null"
+            android:text="@string/share"
+            android:textSize="@dimen/buttonfont_size"
+            android:layout_centerVertical="true"/>
 
     </RelativeLayout>
     <View
@@ -57,38 +91,13 @@
             <RelativeLayout
                 android:id="@+id/RelativeLayout_page"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <RelativeLayout
-                    android:id="@+id/RelativeLayout_page_mood"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/top_menu2_Hsize">
-                    <TextView
-                        android:id="@+id/page_mood_icon"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:layout_marginRight="@dimen/margin_size_top"
-                        android:layout_toLeftOf="@id/page_mood"
-                        android:textSize="@dimen/datefont"
-                        android:text="@string/happy"
-                        />
-                    <TextView
-                        android:id="@+id/page_mood"
-                        android:layout_height="wrap_content"
-                        android:layout_width="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:layout_centerHorizontal="true"
-                        android:textSize="@dimen/datefont"
-                        android:text="Mood:O O O O O O O O O"
-                        />
-                </RelativeLayout>
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/boundary_button_padding_size">
 
                 <TextView
                     android:id="@+id/page_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/RelativeLayout_page_mood"
                     android:layout_marginStart="@dimen/margin_size"
                     android:layout_marginTop="@dimen/margin_size"
                     android:layout_marginEnd="@dimen/margin_size"
@@ -126,10 +135,35 @@
                 </RelativeLayout>
 
                 <RelativeLayout
-                    android:id="@+id/page_weather_relative"
+                    android:id="@+id/page_mood_relative"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/page_kind_relative">
+                    <TextView
+                        android:id="@+id/page_mood_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/margin_size_top"
+                        android:textSize="@dimen/textfont"
+                        android:text="@string/heart"
+                        android:layout_alignParentStart="true"
+                        />
+                    <TextView
+                        android:id="@+id/page_mood"
+                        android:layout_marginTop="@dimen/margin_size_top"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/page_mood_icon"
+                        android:layout_alignBottom="@id/page_mood_icon"
+                        android:textSize="@dimen/textfont"
+                        android:text="mood"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/page_weather_relative"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/page_mood_relative">
                     <TextView
                         android:id="@+id/page_weather_icon"
                         android:layout_width="wrap_content"

@@ -3,23 +3,15 @@ package com.example.sqlite2.view;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -29,14 +21,12 @@ import com.example.sqlite2.R;
 import com.example.sqlite2.database.DatabaseHelper;
 import com.example.sqlite2.database.model.Note;
 import com.example.sqlite2.utils.MyDividerItemDecoration;
-import com.example.sqlite2.utils.RecyclerTouchListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import com.example.sqlite2.utils.OnItemTouchListener;
 import com.github.florent37.materialviewpager.MaterialViewPager;
-import com.github.florent37.materialviewpager.header.HeaderDesign;
 
 public class MainActivity extends AppCompatActivity {
     private NotesAdapter mAdapter;
@@ -230,7 +220,7 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog.Builder alertDialogBuilderUserInput = new AlertDialog.Builder(MainActivity.this);
         alertDialogBuilderUserInput.setView(view);
 
-        final EditText inputNote = view.findViewById(R.id.note);
+        final EditText inputNote = view.findViewById(R.id.dialog_input);
         TextView dialogTitle = view.findViewById(R.id.edit_date);
         dialogTitle.setText(!shouldUpdate ? getString(R.string.lbl_new_note_title) : getString(R.string.lbl_edit_note_title));
 

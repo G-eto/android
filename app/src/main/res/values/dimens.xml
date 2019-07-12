@@ -13,10 +13,11 @@
     <dimen name="note_list_text">18sp</dimen>
 
     //edit high size
-    <dimen name="edit_text_high_size">400dp</dimen>
+    <dimen name="edit_text_high_size">200dp</dimen>
 
     //fontSize
     <dimen name="datefont">30sp</dimen>
+    <dimen name="Title">25sp</dimen>
     <dimen name="markfont">14sp</dimen>
     <dimen name="textfont">16sp</dimen>
     
@@ -34,5 +35,8 @@
 
     //button size
     <dimen name="buttonfont_size">30sp</dimen>
+    <dimen name="buttonfont_size_mid">25sp</dimen>
+    <dimen name="button_2_Wsize">40dp</dimen>
+    <dimen name="button_2_Hsize">30dp</dimen>
 
 </resources>

@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.security.acl.NotOwnerException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -45,7 +46,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public long insertNote(String note, String kind, String weather, int wordnumber,
-                           String location, String inshort, String state, int mood) {
+                           String location, String inshort, String state, int mood, int temperature) {
         // get writable database as we want to write data
         SQLiteDatabase db = this.getWritableDatabase();
         Log.d("hhhhhhhhhhhhhhhhhhhhhinsert:","文本:"+ note +"天气:"+weather+"类别:"+kind);
@@ -60,7 +61,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(Note.COLUMN_INSHORT,inshort);
         values.put(Note.COLUMN_MOOD, mood);
         values.put(Note.COLUMN_STATE,state);
-
+        values.put(Note.COLUMN_TEMPERATURE, temperature);
         // insert row
         long id = db.insert(Note.TABLE_NAME, null, values);
         Log.d("hgfhfgfhddhyg:",String.valueOf(id));
@@ -81,7 +82,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 new String[]{Note.COLUMN_ID, Note.COLUMN_NOTE, Note.COLUMN_TIMESTAMP,
                         Note.COLUMN_WORDNUMBER, Note.COLUMN_KIND, Note.COLUMN_WEATHER,
                         Note.COLUMN_UPDATETIME, Note.COLUMN_LOCATION, Note.COLUMN_INSHORT,
-                        Note.COLUMN_MOOD, Note.COLUMN_STATE},
+                        Note.COLUMN_MOOD, Note.COLUMN_STATE, Note.COLUMN_TEMPERATURE},
                 Note.COLUMN_ID + "=?",
                 new String[]{String.valueOf(id)},
                 null, null, null, null);
@@ -101,7 +102,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 cursor.getString(cursor.getColumnIndex(Note.COLUMN_LOCATION)),
                 cursor.getString(cursor.getColumnIndex(Note.COLUMN_INSHORT)),
                 cursor.getInt(cursor.getColumnIndex(Note.COLUMN_MOOD)),
-                cursor.getString(cursor.getColumnIndex(Note.COLUMN_STATE)));
+                cursor.getString(cursor.getColumnIndex(Note.COLUMN_STATE)),
+                cursor.getInt(cursor.getColumnIndex(Note.COLUMN_TEMPERATURE)));
 
         // close the db connection
         cursor.close();
@@ -134,6 +136,7 @@ Log.d("娶到媳妇：",note.getNote()+"" +note.getKind()+""+note.getWordnumber(
                 note.setInshort(cursor.getString(cursor.getColumnIndex(Note.COLUMN_INSHORT)));
                 note.setMood(cursor.getInt(cursor.getColumnIndex(Note.COLUMN_MOOD)));
                 note.setState(cursor.getString(cursor.getColumnIndex(Note.COLUMN_STATE)));
+                note.setTemperature(cursor.getInt(cursor.getColumnIndex(Note.COLUMN_TEMPERATURE)));
                 notes.add(note);
             } while (cursor.moveToNext());
         }
@@ -177,6 +180,7 @@ Log.d("娶到媳妇：",note.getNote()+"" +note.getKind()+""+note.getWordnumber(
         values.put(Note.COLUMN_MOOD, note.getMood());
         values.put(Note.COLUMN_STATE,note.getState());
         values.put(Note.COLUMN_UPDATETIME,sdf.format(date));
+        values.put(Note.COLUMN_TEMPERATURE,note.getTemperature());
         // updating row
         return db.update(Note.TABLE_NAME, values, Note.COLUMN_ID + " = ?",
                 new String[]{String.valueOf(note.getId())});
@@ -216,6 +220,7 @@ Log.d("娶到媳妇：",note.getNote()+"" +note.getKind()+""+note.getWordnumber(
                 note.setInshort(cursor.getString(cursor.getColumnIndex(Note.COLUMN_INSHORT)));
                 note.setMood(cursor.getInt(cursor.getColumnIndex(Note.COLUMN_MOOD)));
                 note.setState(cursor.getString(cursor.getColumnIndex(Note.COLUMN_STATE)));
+                note.setTemperature(cursor.getInt(cursor.getColumnIndex(Note.COLUMN_TEMPERATURE)));
                 notes.add(note);
             } while (cursor.moveToNext());
         }

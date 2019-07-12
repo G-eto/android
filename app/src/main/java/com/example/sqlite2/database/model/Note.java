@@ -13,6 +13,7 @@ public class Note {
     public static final String COLUMN_INSHORT = "inshort";
     public static final String COLUMN_MOOD = "mood";
     public static final String COLUMN_STATE = "state";
+    public static final String COLUMN_TEMPERATURE = "temperature";
 
     private int id;
     private String note;
@@ -24,8 +25,9 @@ public class Note {
     private String updatetime;
     private String location;
     private String inshort;
-    private  int mood;
+    private int mood;
     private String state;//置顶
+    private int temperature;
 
     //未实现
 
@@ -43,12 +45,13 @@ public class Note {
                     + COLUMN_LOCATION + " TEXT,"
                     + COLUMN_INSHORT + " TEXT,"
                     + COLUMN_MOOD + " INTEGER,"
-                    + COLUMN_STATE + " TEXT)";
+                    + COLUMN_STATE + " TEXT,"
+                    + COLUMN_TEMPERATURE + " INTEGER)";
     public Note(){
 
     }
-    public Note (int id, String note, String timestamp, int wordnumber, String weather, String kind,
-                 String updatetime, String location, String inshort, int mood, String state){
+    public Note (int id, String note, String timestamp, int wordnumber, String kind, String weather,
+                 String updatetime, String location, String inshort, int mood, String state, int temperature){
         this.id = id;
         this.note = note;
         this.timestamp = timestamp;
@@ -60,6 +63,7 @@ public class Note {
         this.updatetime = updatetime;
         this.location = location;
         this.state = state;
+        this.temperature = temperature;
     }
     public int getId(){
         return id;
@@ -78,7 +82,7 @@ public class Note {
     public String getUpdatetime(){return updatetime;}
     public String getInshort(){return inshort;}
     public int getMood(){return mood;}
-
+    public int getTemperature(){return temperature;}
 
     public void setId(int id){
         this.id = id;
@@ -97,4 +101,5 @@ public class Note {
     public void setUpdatetime(String updatetime){this.updatetime = updatetime;}
     public void setInshort(String inshort){this.inshort = inshort;}
     public void setMood(int mood){this.mood = mood;}
+    public void setTemperature(int temperature){this.temperature = temperature;}
 }

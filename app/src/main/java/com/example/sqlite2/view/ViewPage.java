@@ -39,6 +39,10 @@ public class ViewPage extends Activity {
     View view;
     private FloatingActionButton editfab;
     private Button backButton;
+    private Button share;
+    private Button delete;
+    private Button copy;
+
     private TextView date;
     private TextView weather;
     private TextView output;
@@ -70,7 +74,6 @@ public class ViewPage extends Activity {
     private GestureDetector gestureDetector=null;
     int dbcount;
 
-    //@SuppressLint("ClickableViewAccessibility")
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +88,11 @@ public class ViewPage extends Activity {
         inshort = findViewById(R.id.page_inshort);
         editfab = findViewById(R.id.edit_fab);
         backButton = findViewById(R.id.page_back);
+
+        copy = findViewById(R.id.copy_page);
+        share = findViewById(R.id.share_page);
+        delete = findViewById(R.id.delete_page);
+
         output.setMovementMethod(ScrollingMovementMethod.getInstance());
 
         ScrollView scroll = findViewById(R.id.src_over);
@@ -115,6 +123,9 @@ public class ViewPage extends Activity {
         inshort_icon.setTypeface(tf);
         updatetime_icon.setTypeface(tf);
         mood_icon.setTypeface(tf);
+        delete.setTypeface(tf);
+        copy.setTypeface(tf);
+        share.setTypeface(tf);
 
 
         editfab.setOnClickListener(new View.OnClickListener() {
@@ -178,7 +189,7 @@ public class ViewPage extends Activity {
 //            }
 //        });
 
-        View test = findViewById(R.id.page_text);
+        View test = findViewById(R.id.RelativeLayout_page);
         test.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {

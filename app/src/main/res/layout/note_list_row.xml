@@ -62,7 +62,7 @@
         />
 
     <TextView
-        android:id="@+id/note"
+        android:id="@+id/dialog_input"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/kind"
@@ -83,7 +83,7 @@
         android:id="@+id/location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/note"
+        android:layout_below="@id/dialog_input"
         android:layout_alignParentRight="true"
         android:text="location:南口"/>
 
@@ -91,7 +91,7 @@
         android:id="@+id/wordnumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/note"
+        android:layout_below="@id/dialog_input"
         android:layout_toRightOf="@id/weather"
         android:text="Wnumber:9"
         android:textSize="@dimen/markfont" />
@@ -100,8 +100,8 @@
         android:id="@+id/weather"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/note"
-        android:layout_alignLeft="@id/note"
+        android:layout_below="@id/dialog_input"
+        android:layout_alignLeft="@id/dialog_input"
         android:textSize="@dimen/markfont"
         android:text="weather:晴"
         />
