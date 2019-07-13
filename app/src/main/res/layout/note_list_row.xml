@@ -2,117 +2,118 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:id="@+id/list_item_row"
-    android:clickable="true"
-    android:foreground="?attr/selectableItemBackground"
-    android:paddingLeft="@dimen/activity_margin"
-    android:paddingTop="@dimen/dimen_10"
-    android:paddingRight="@dimen/activity_margin"
-    android:paddingBottom="@dimen/dimen_10"
-    android:maxHeight="50sp"
-    android:adjustViewBounds="true"
-    android:background="@drawable/boder">
 
-    <TextView
-        android:id="@+id/timestamp"
-        android:layout_width="wrap_content"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/list_item_row"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_marginTop="@dimen/dimen_10"
-        android:layout_marginRight="@dimen/dot_margin_right"
-        android:includeFontPadding="false"
-        android:lineSpacingExtra="0dp"
-        android:textColor="@color/colorAccent"
-        android:textSize="@dimen/datefont2"
-        android:text="date:7/11"/>
+        android:adjustViewBounds="true"
+        android:background="@drawable/boder"
+        android:clickable="true"
+        android:foreground="?attr/selectableItemBackground"
+        android:maxHeight="50sp"
+        android:paddingLeft="@dimen/activity_margin"
+        android:paddingTop="@dimen/dimen_10"
+        android:paddingRight="@dimen/activity_margin"
+        android:paddingBottom="@dimen/dimen_10">
 
-    <TextView
-        android:id="@+id/time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
+        <TextView
+            android:id="@+id/timestamp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="@dimen/dimen_10"
+            android:layout_marginRight="@dimen/dot_margin_right"
+            android:includeFontPadding="false"
+            android:lineSpacingExtra="0dp"
+            android:text="date:7/11"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/datefont2" />
 
-        android:layout_below="@id/timestamp"
-        android:layout_marginTop="@dimen/dimen_10"
-        android:layout_marginRight="@dimen/dot_margin_right"
-        android:includeFontPadding="false"
-        android:lineSpacingExtra="0dp"
-        android:textColor="@color/colorAccent"
-        android:textSize="@dimen/markfont"
-        android:text="time:8:24"/>
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/timestamp"
 
-    <TextView
-        android:id="@+id/kind"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/timestamp"
-        android:layout_alignParentTop="true"
-        android:textColor="@color/timestamp"
-        android:textSize="@dimen/markfont"
-        android:text="日记"/>
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="@dimen/dimen_10"
+            android:layout_marginRight="@dimen/dot_margin_right"
+            android:includeFontPadding="false"
+            android:lineSpacingExtra="0dp"
+            android:text="time:8:24"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/markfont" />
 
-
-    <TextView
-        android:id="@+id/state"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:textColor="@color/red"
-        android:textSize="@dimen/markfont"
-        android:visibility="invisible"
-        android:text="❤"
-        />
-
-    <TextView
-        android:id="@+id/dialog_input"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/kind"
-        android:layout_toRightOf="@id/timestamp"
-        android:textColor="@color/note_list_text"
-        android:textSize="@dimen/note_list_text"
-        android:text="note:hahahahah"/>
+        <TextView
+            android:id="@+id/kind"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@id/timestamp"
+            android:text="日记"
+            android:textColor="@color/timestamp"
+            android:textSize="@dimen/markfont" />
 
 
-    <TextView
-        android:id="@+id/mood"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/kind"
-        android:text="mood:10"/>
+        <TextView
+            android:id="@+id/state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:text="❤"
+            android:textColor="@color/red"
+            android:textSize="@dimen/markfont"
+            android:visibility="invisible" />
 
-    <TextView
-        android:id="@+id/location"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/dialog_input"
-        android:layout_alignParentRight="true"
-        android:text="南口"/>
+        <TextView
+            android:id="@+id/dialog_input"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/kind"
+            android:layout_marginTop="@dimen/margin_size_top"
+            android:layout_marginBottom="@dimen/margin_size_top"
+            android:layout_toRightOf="@id/timestamp"
+            android:text=""
+            android:textColor="@color/note_list_text"
+            android:textSize="@dimen/note_list_text" />
 
-    <TextView
-        android:id="@+id/wordnumber"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/dialog_input"
-        android:layout_toRightOf="@id/weather"
-        android:text="Wnumber:9"
-        android:textSize="@dimen/markfont" />
 
-    <TextView
-        android:id="@+id/weather"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/dialog_input"
-        android:layout_alignLeft="@id/dialog_input"
-        android:textSize="@dimen/markfont"
-        android:text="weather:晴"
-        />
+        <TextView
+            android:id="@+id/mood"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/kind"
+            android:text="mood:10" />
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/dialog_input"
+            android:layout_alignParentRight="true"
+            android:text="南口" />
+
+        <TextView
+            android:id="@+id/wordnumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/dialog_input"
+            android:layout_toRightOf="@id/weather"
+            android:text="Wnumber:9"
+            android:textSize="@dimen/markfont" />
+
+        <TextView
+            android:id="@+id/weather"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/dialog_input"
+            android:layout_alignLeft="@id/dialog_input"
+            android:text="weather:晴"
+            android:textSize="@dimen/markfont" />
+
+    </RelativeLayout>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="@dimen/margin_size"

@@ -4,6 +4,10 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Typeface;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 
 import com.example.sqlite2.R;
@@ -69,6 +73,9 @@ public class EditActivity extends Activity {
     private AlertDialog.Builder builder;
     //private ProgressDialog progressDialog;
 
+    //location
+
+
     final String tag = "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh:";
 
     @Override
@@ -78,6 +85,7 @@ public class EditActivity extends Activity {
         setContentView(R.layout.activity_edit);
 
         db = new DatabaseHelper(this);
+
 
         Log.d(tag, "hello edit2");
         inputNote = findViewById(R.id.edit_text);
@@ -155,11 +163,13 @@ public class EditActivity extends Activity {
                     Log.d(tag, "updatestart");
                     updateNote();
                     Log.d(tag, "updone");
+                    Toast.makeText(EditActivity.this,"已更新",Toast.LENGTH_SHORT).show();
                     intent2ViewPage();
                 } else if (note_id == -1 && inputNote.getText().toString().length() > 0) {
                     Log.d(tag, "createstart");
                     createNote("save");
                     Log.d(tag, "createdone");
+                    Toast.makeText(EditActivity.this,"已保存",Toast.LENGTH_SHORT).show();
                     intent2Main();
 
                 }
@@ -256,7 +266,7 @@ public class EditActivity extends Activity {
         note.setWordnumber(note.getNote().length());
         //note.setState(state.getText().toString());
         Log.d(tag, note.getNote() + ",f,vx");
-        long id = db.insertNote(note.getNote(), "日记", "晴天",
+        long id = db.insertNote(note.getNote(), "日记", note.getWeather(),
                 note.getWordnumber(), note.getLocation(), note.getInshort(), note.getState(), note.getMood(), note.getTemperature());
         Log.d(tag, "backID:" + id);
 
@@ -338,6 +348,7 @@ public class EditActivity extends Activity {
                 @Override
                 public void run() {
 //                    location.setText(finalWi.getCity());
+                    Log.d("ccccccccccccccccccccity:",finalWi.getCity());
                     //note.setTemperature(finalWi.getHighTemp()); //单位
                     weather.setText(finalWi.getDescription() + " " + finalWi.getHighTemp());
                     //txt.setText(finalWi.getCity() + finalWi.getHighTemp() + finalWi.getLowTemp() + finalWi.getDescription() + finalWi.getPublishTime());

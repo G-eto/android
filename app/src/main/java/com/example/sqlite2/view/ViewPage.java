@@ -2,10 +2,15 @@ package com.example.sqlite2.view;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
@@ -23,6 +28,7 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.sqlite2.R;
 import com.example.sqlite2.database.DatabaseHelper;
@@ -147,6 +153,31 @@ public class ViewPage extends Activity {
             }
         });
 
+        copy.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                ClipboardManager cm = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                ClipData mClipData = ClipData.newPlainText("Label", output.getText());
+                cm.setPrimaryClip(mClipData);
+                Toast.makeText(getApplicationContext(), "复制成功!", Toast.LENGTH_LONG).show();
+            }
+        });
+
+        delete.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                showAlterDialog();
+            }
+
+        });
+
+        share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
         Intent intent = getIntent();
         int data = intent.getIntExtra("note_id",-1);
         Log.d("oooooooooooooooooooooooooooooooo:id","id:"+data);
@@ -260,5 +291,32 @@ public class ViewPage extends Activity {
 
         }
         return "";
+    }
+
+    private void showAlterDialog(){
+        final AlertDialog.Builder alterDiaglog = new AlertDialog.Builder(ViewPage.this);
+        alterDiaglog.setIcon(R.drawable.logo_white);//图标
+        alterDiaglog.setTitle("提示");//文字
+        alterDiaglog.setMessage("确定删除吗");//提示消息
+        //积极的选择
+        alterDiaglog.setPositiveButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        //消极的选择
+
+        alterDiaglog.setNeutralButton("删除", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                db.deleteNote(note);
+                Intent intent = new Intent(ViewPage.this, MainActivity.class);
+                Toast.makeText(ViewPage.this,"已删除",Toast.LENGTH_SHORT).show();
+                startActivity(intent);
+            }
+        });
+        //显示
+        alterDiaglog.show();
     }
 }

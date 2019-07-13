@@ -206,6 +206,7 @@ public class MainActivity extends AppCompatActivity {
                     //showNoteDialog(true, notesList.get(position), position);
                 } else if(which == 1){
                     deleteNote(position);
+                    Toast.makeText(MainActivity.this,"已删除",Toast.LENGTH_SHORT).show();
                 }
                 else{
 
