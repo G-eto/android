@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:id="@+id/list_item_row"
     android:clickable="true"
     android:foreground="?attr/selectableItemBackground"
     android:paddingLeft="@dimen/activity_margin"
@@ -22,7 +26,7 @@
         android:includeFontPadding="false"
         android:lineSpacingExtra="0dp"
         android:textColor="@color/colorAccent"
-        android:textSize="@dimen/datefont"
+        android:textSize="@dimen/datefont2"
         android:text="date:7/11"/>
 
     <TextView
@@ -48,7 +52,7 @@
         android:layout_alignParentTop="true"
         android:textColor="@color/timestamp"
         android:textSize="@dimen/markfont"
-        android:text="kind:日记"/>
+        android:text="日记"/>
 
 
     <TextView
@@ -57,8 +61,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
+        android:textColor="@color/red"
         android:textSize="@dimen/markfont"
-        android:text="state:已保存"
+        android:visibility="invisible"
+        android:text="❤"
         />
 
     <TextView
@@ -85,7 +91,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/dialog_input"
         android:layout_alignParentRight="true"
-        android:text="location:南口"/>
+        android:text="南口"/>
 
     <TextView
         android:id="@+id/wordnumber"
@@ -106,4 +112,9 @@
         android:text="weather:晴"
         />
 
+</RelativeLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/margin_size"
+        android:layout_below="@id/list_item_row" />
 </RelativeLayout>

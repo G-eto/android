@@ -18,6 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
+        android:layout_marginLeft="150dp"
         android:layout_marginTop="@dimen/margin_top_no_notes"
         android:fontFamily="sans-serif-light"
         android:text="@string/msg_no_notes"

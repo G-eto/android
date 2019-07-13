@@ -52,10 +52,12 @@ public class EditActivity extends Activity {
 
     private Button date_icon;
     private Button weather_icon;
-    private Button wordnumber_icon;
+    private TextView wordnumber_icon;
     private Button location_icon;
     private Button inshort_icon;
     private TextView mood_icon;
+    private TextView mood_number_edit;
+    private TextView mood_value_icon;
 
     private static Context context;
 
@@ -63,6 +65,9 @@ public class EditActivity extends Activity {
     private Note note = new Note();
     private int note_id;
     DatabaseHelper db;
+
+    private AlertDialog.Builder builder;
+    //private ProgressDialog progressDialog;
 
     final String tag = "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh:";
 
@@ -83,9 +88,9 @@ public class EditActivity extends Activity {
         date = findViewById(R.id.edit_date);
         mood = findViewById(R.id.edit_mood);
         weather = findViewById(R.id.edit_weather);
-        wordnumber = findViewById(R.id.edit_wordnumber);
         location = findViewById(R.id.edit_location);
         inshort = findViewById(R.id.edit_inshort);
+        wordnumber = findViewById(R.id.edit_wordnumber);
         //date_icon = findViewById(R.id.edit_date_icon);
         mark_icon = findViewById(R.id.edit_mark_icon);
         weather_icon = findViewById(R.id.edit_weather_icon);
@@ -93,11 +98,12 @@ public class EditActivity extends Activity {
         location_icon = findViewById(R.id.edit_location_icon);
         inshort_icon = findViewById(R.id.edit_inshort_icon);
         mood_icon = findViewById(R.id.edit_mood_icon);
+        mood_number_edit = findViewById(R.id.edit_mood_value);
+        mood_value_icon = findViewById(R.id.edit_mood_value_icon);
 
         Typeface tf = Typeface.createFromAsset(getAssets(), "iconfont.ttf");
         saveButton.setTypeface(tf);
         backButton.setTypeface(tf);
-        //mood.setTypeface(tf);
         marks.setTypeface(tf);
         weather_icon.setTypeface(tf);
         wordnumber_icon.setTypeface(tf);
@@ -105,6 +111,7 @@ public class EditActivity extends Activity {
         inshort_icon.setTypeface(tf);
         mark_icon.setTypeface(tf);
         mood_icon.setTypeface(tf);
+        mood_value_icon.setTypeface(tf);
 
         context = getApplicationContext();
         weather_icon.setOnClickListener(new View.OnClickListener() {
@@ -120,7 +127,7 @@ public class EditActivity extends Activity {
 
             @Override
             public void onClick(View view) {
-                location.setText("北京化工大学");
+                showDialog(location, location_icon);
             }
         });
 
@@ -161,12 +168,30 @@ public class EditActivity extends Activity {
             }
         });
 
+        mood.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                mood_number_edit.setText(String.valueOf(mood.getProgress()-100)+"°");
+                mood_icon.setText(getMoodEmoji(mood.getProgress()-100));
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.d(tag, "backback");
-                createNote("draft");
-                finish();
+                showThree();
+                //finish();
             }
         });
 
@@ -209,9 +234,8 @@ public class EditActivity extends Activity {
             weather.setText(note.getWeather());
             inshort.setText(note.getInshort());
             location.setText(note.getLocation());
-            wordnumber.setText(note.getWordnumber() + "字");
             marks.setText(note.getKind());
-            mood.setProgress(note.getMood());
+            mood.setProgress(note.getMood()+100);
         }
     }
 
@@ -225,7 +249,7 @@ public class EditActivity extends Activity {
         note.setInshort(inshort.getText().toString());
         note.setLocation(location.getText().toString());
         note.setTemperature(27);
-        note.setMood(mood.getProgress());
+        note.setMood(mood.getProgress()-100);
 
         //note.setWeather(weather.getText().toString());
         note.setNote(inputNote.getText().toString());
@@ -251,11 +275,10 @@ public class EditActivity extends Activity {
         // updating note text
         note.setNote(inputNote.getText().toString());
 //kind need to be add, not use get()
-        note.setState("save");
         //note.setWeather(weather.getText().toString());
         note.setWeather(weather.getText().toString());
         note.setKind(marks.getText().toString());
-        note.setMood(mood.getProgress());
+        note.setMood(mood.getProgress()-100);
         note.setTemperature(27);
         note.setInshort(inshort.getText().toString());
         note.setLocation(location.getText().toString());
@@ -315,6 +338,7 @@ public class EditActivity extends Activity {
                 @Override
                 public void run() {
 //                    location.setText(finalWi.getCity());
+                    //note.setTemperature(finalWi.getHighTemp()); //单位
                     weather.setText(finalWi.getDescription() + " " + finalWi.getHighTemp());
                     //txt.setText(finalWi.getCity() + finalWi.getHighTemp() + finalWi.getLowTemp() + finalWi.getDescription() + finalWi.getPublishTime());
                 }
@@ -330,11 +354,30 @@ public class EditActivity extends Activity {
         alertDialogBuilderUserInput.setView(view);
 
         final EditText inputNote = view.findViewById(R.id.dialog_input);
-        TextView dialogTitle = view.findViewById(R.id.dialog_title);
+        final TextView dialogTitle = view.findViewById(R.id.dialog_title);
         Typeface tf = Typeface.createFromAsset(getAssets(), "iconfont.ttf");
         dialogTitle.setText(button.getText());
         dialogTitle.setTypeface(tf);
         boolean should = false;
+        inputNote.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+
+            public void afterTextChanged(Editable editable) {
+
+                //长度发生变化，监听到输入的长度为 editText.getText().length()
+                dialogTitle.setText(String.valueOf(button.getText()+""+inputNote.getText().length()) + "字");
+            }
+        });
         if (textView.getText() != null) {
             inputNote.setText(textView.getText());
             should = true;
@@ -371,6 +414,49 @@ public class EditActivity extends Activity {
                 }
             }
         });
+    }
+
+    private void showThree() {
+        builder = new AlertDialog.Builder(this).setIcon(R.mipmap.ic_launcher).setTitle("提示")
+                .setMessage("是否保存本次编辑？").setPositiveButton("保存", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        //ToDo: 你想做的事情
+                        //Toast.makeText(EditActivity.this, "确定按钮", Toast.LENGTH_LONG).show();
+                        saveButton.callOnClick();
+                    }
+                }).setNeutralButton("不保存", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        finish();
+                    }
+                }).setNegativeButton("点错了", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        //ToDo: 你想做的事情
+                        //finish();
+                    }
+                });
+        builder.create().show();
+
+    }
+
+    public String getMoodEmoji(int m){
+        int e = (int)Math.round(1.0*m/20) + 5;
+        switch (e){
+            case 6:return "\uD83D\uDE05";
+            case 7:return "\uD83D\uDE02";
+            case 8:return "\uD83D\uDE1D";
+            case 9:return "\uD83D\uDE0D";
+            case 10:return "\uD83D\uDE08";
+            case 0:return "\uD83D\uDE2D";
+            case 1:return "\uD83D\uDE24";
+            case 2:return "\uD83D\uDE2B";
+            case 3:return "\uD83D\uDE23";
+            case 4:return "\uD83D\uDE37";
+            case 5:return "\uD83D\uDE36";
+            default : return "\uD83D\uDC7F";
+        }
     }
 
 }

@@ -187,7 +187,12 @@ public class MainActivity extends AppCompatActivity {
      * Delete - 0
      */
     private void showActionsDialog(final int position) {
-        CharSequence colors[] = new CharSequence[]{"Edit", "Delete","Test"};
+        Note n = notesList.get(position);
+        CharSequence colors[];
+        if(n.getState().equals("star"))
+            colors= new CharSequence[]{"修改", "删除", "取消收藏"};
+        else
+            colors= new CharSequence[]{"修改", "删除", "收藏"};
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Choose option");
@@ -199,8 +204,25 @@ public class MainActivity extends AppCompatActivity {
                     intent.putExtra("note_id", notesList.get(position).getId());
                     startActivity(intent);
                     //showNoteDialog(true, notesList.get(position), position);
-                } else {
+                } else if(which == 1){
                     deleteNote(position);
+                }
+                else{
+
+                    // updating note text
+                    Note n = notesList.get(position);
+                    if(n.getState().equals("save"))
+                        n.setState("star");
+                    else if(n.getState().equals("star"))
+                        n.setState("save");
+                    // updating note in db String kind, String weather, int wordnumber
+                    db.updateNote(n);
+
+                    // refreshing the list
+                    notesList.set(position, n);
+                    mAdapter.notifyItemChanged(position);
+
+                    toggleEmptyNotes();
                 }
             }
         });

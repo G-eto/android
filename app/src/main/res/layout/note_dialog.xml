@@ -41,7 +41,7 @@
             android:background="@android:color/transparent"
             android:gravity="top"
             android:hint="@string/hint_enter_note"
-            android:minHeight="@dimen/edit_text_high_size"
+            android:minHeight="@dimen/edit_text_dialog_size"
             android:inputType="textCapSentences|textMultiLine"
             android:textColorHint="@color/hint_enter_note"
             android:textSize="@dimen/input_new_note"

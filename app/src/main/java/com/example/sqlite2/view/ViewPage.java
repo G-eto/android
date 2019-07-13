@@ -212,6 +212,9 @@ public class ViewPage extends Activity {
     }
 
     public void DisplayNote(int id){
+
+        //if use only one TextView could in a line, looks more cool, just getText()+""+data
+
         note = db.getNote(id);
         date.setText(formatDate(note.getTimestamp()));
         output.setText(note.getNote());
@@ -223,7 +226,7 @@ public class ViewPage extends Activity {
         kind.setText(note.getKind());
         inshort.setText(note.getInshort());
         updatetime.setText(note.getUpdatetime());
-        mood.setText(note.getMood()+"级");
+        mood.setText(note.getMood()+"°");
         location.setText(note.getLocation());
 
     }

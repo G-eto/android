@@ -26,7 +26,51 @@
             android:textSize="@dimen/lbl_new_note_title"
 
             android:textStyle="normal" />
+<RelativeLayout
+    android:id="@+id/edit_wordnumber_relativeLayout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_toLeftOf="@id/edit_save"
+android:layout_marginTop="@dimen/boundary_button_padding_size"
+    android:layout_marginRight="@dimen/margin_size">
+        <TextView
+            android:id="@+id/edit_wordnumber_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/margin_size_top"
+            android:textSize="@dimen/toptext"
+            android:text="@string/fontb"/>
+    <TextView
+        android:id="@+id/edit_wordnumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/markfont"
+        android:layout_toRightOf="@id/edit_wordnumber_icon"/>
+</RelativeLayout>
+<RelativeLayout
+    android:id="@+id/edit_mood_value_relativelayout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/edit_wordnumber_relativeLayout"
+android:layout_alignLeft="@id/edit_wordnumber_relativeLayout"
+    android:layout_marginTop="1sp">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/edit_mood_value_icon"
+            android:textSize="@dimen/toptext"
+            android:layout_marginRight="@dimen/margin_size_top"
+            android:text="@string/heart"/>
+        <TextView
+            android:id="@+id/edit_mood_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/edit_mood_value_icon"
+            android:textSize="@dimen/markfont"
+            android:text=""
+            />
+</RelativeLayout>
         <Button
             android:id="@+id/edit_back"
             android:text="@string/back"
@@ -63,6 +107,7 @@
         <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:id="@+id/src"
             >
             <RelativeLayout
                 android:id="@+id/RelativeLayout_edit"
@@ -75,14 +120,12 @@
                     android:layout_height="@dimen/top_menu_Hsize">
                     <TextView
                         android:id="@+id/edit_mood_icon"
-                        android:stateListAnimator="@null"
-                        android:background="@null"
                         android:paddingTop="3dp"
                         android:layout_width="@dimen/button_2_Wsize"
                         android:layout_height="@dimen/button_2_Hsize"
                         android:layout_margin="@dimen/margin_size_top"
                         android:textSize="@dimen/buttonfont_size_mid"
-                        android:text="@string/happy"
+                        android:text="😶"
                         android:layout_alignParentStart="true"
                         android:layout_centerHorizontal="true"
                         />
@@ -97,9 +140,9 @@
                         android:minHeight="2dp"
                         android:paddingBottom="3dp"
                         android:paddingLeft="12dp"
-                        android:max="100"
+                        android:max="200"
                         android:min="0"
-                        android:progress="0"
+                        android:progress="100"
                         android:paddingRight="12dp"
                         android:paddingTop="3dp"
                         android:progressDrawable="@drawable/layer_progress"
@@ -110,7 +153,8 @@
                     android:id="@+id/edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="@dimen/margin_size"
+                    android:layout_marginLeft="@dimen/margin_size"
+                    android:layout_marginRight="@dimen/margin_size"
                     android:background="@android:color/transparent"
                     android:paddingBottom="@dimen/text_paddindbutton_size"
                     android:layout_below="@id/edit_mood_relative"
@@ -148,42 +192,15 @@
                         android:layout_toRightOf="@id/edit_weather_icon"
                         android:layout_alignBottom="@id/edit_weather_icon"
                         android:textSize="@dimen/textfont"
-                        android:text="snow"/>
+                        android:text="天气"/>
                 </RelativeLayout>
 
-                <RelativeLayout
-                    android:id="@+id/edit_wordnumber_relative"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/edit_weather_relative">
-                    <Button
-                        android:id="@+id/edit_wordnumber_icon"
-                        android:stateListAnimator="@null"
-                        android:background="@null"
-                        android:layout_width="@dimen/button_2_Wsize"
-                        android:layout_height="@dimen/button_2_Hsize"
-                        android:layout_marginTop="@dimen/margin_size_top"
-                        android:layout_marginLeft="@dimen/margin_size_top"
-                        android:textSize="@dimen/textfont"
-                        android:text="@string/fontb"
-                        android:layout_alignParentStart="true"
-                        />
-                    <TextView
-                        android:id="@+id/edit_wordnumber"
-                        android:layout_marginTop="@dimen/margin_size_top"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignBottom="@id/edit_wordnumber_icon"
-                        android:layout_toRightOf="@id/edit_wordnumber_icon"
-                        android:textSize="@dimen/textfont"
-                        android:text="字数："/>
-                </RelativeLayout>
 
                 <RelativeLayout
                     android:id="@+id/edit_location_relative"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/edit_wordnumber_relative">
+                    android:layout_below="@id/edit_weather_relative">
                     <Button
                         android:id="@+id/edit_location_icon"
                         android:stateListAnimator="@null"
@@ -234,7 +251,7 @@
                         android:layout_alignBottom="@id/edit_mark_icon"
                         android:layout_toRightOf="@id/edit_mark_icon"
                         android:textSize="@dimen/textfont"
-                        android:text="添加marks"/>
+                        android:text="日记"/>
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -263,7 +280,7 @@
                         android:layout_alignBottom="@id/edit_inshort_icon"
                         android:layout_toRightOf="@id/edit_inshort_icon"
                         android:textSize="@dimen/textfont"
-                        android:text="inshort:It's the best I have ever seen."/>
+                        android:text=""/>
                 </RelativeLayout>
 
 

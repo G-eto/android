@@ -14,12 +14,15 @@
 
     //edit high size
     <dimen name="edit_text_high_size">200dp</dimen>
+    <dimen name="edit_text_dialog_size">100dp</dimen>
 
     //fontSize
     <dimen name="datefont">30sp</dimen>
+    <dimen name="datefont2">27sp</dimen>
     <dimen name="Title">25sp</dimen>
     <dimen name="markfont">14sp</dimen>
     <dimen name="textfont">16sp</dimen>
+    <dimen name="toptext">20sp</dimen>
     
     //组件size
     <dimen name="top_menu_Hsize">60dp</dimen>

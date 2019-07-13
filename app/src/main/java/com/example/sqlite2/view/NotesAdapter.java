@@ -1,7 +1,9 @@
 package com.example.sqlite2.view;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,7 +47,6 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.MyViewHolder
             state = view.findViewById(R.id.state);
             time = view.findViewById(R.id.time);
             kind = view.findViewById(R.id.kind);
-
             //inshort = view.findViewById(R.id.inshort);
             mood = view.findViewById(R.id.mood);
             location = view.findViewById(R.id.location);
@@ -66,17 +67,40 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.MyViewHolder
         holder.note_text.setText(note.getNote());
         //holder.dot.setText(Html.fromHtml("&#8226;"));
         holder.timestamp.setText(formatDate(note.getTimestamp()));
-        holder.weather.setText(note.getWeather());
-        holder.wordnumber.setText(String.valueOf(note.getWordnumber())+"字  ");
-        //holder.state.setText(note.getState());
+        holder.weather.setText("☀"+note.getWeather()+"    ");
+        holder.wordnumber.setText("✍ "+String.valueOf(note.getWordnumber())+"字  ");
+        if(note.getState().equals("star"))
+            holder.state.setVisibility(View.VISIBLE);
+        else
+            holder.state.setVisibility(View.INVISIBLE);
         holder.time.setText(formatTime(note.getTimestamp()));
-        holder.kind.setText(note.getKind()+"  ");
+        holder.kind.setText("\uD83D\uDCC3"+note.getKind()+"    ");
 
 //        holder.updatetime.setText(note.getUpdatetime());
 //        holder.inshort.setText(note.getInshort());
-        holder.mood.setText(note.getMood()+" ");
-        holder.location.setText(note.getLocation());
+        String emoji = getMoodEmoji(note.getMood());
+        holder.mood.setText(emoji+" "+note.getMood()+"°");
+        holder.location.setText("\uD83D\uDC7D "+note.getLocation());
     }
+
+    public String getMoodEmoji(int m){
+        int e = (int)Math.round(1.0*m/20) + 5;
+        switch (e){
+            case 6:return "\uD83D\uDE05";
+            case 7:return "\uD83D\uDE02";
+            case 8:return "\uD83D\uDE1D";
+            case 9:return "\uD83D\uDE0D";
+            case 10:return "\uD83D\uDE08";
+            case 0:return "\uD83D\uDE2D";
+            case 1:return "\uD83D\uDE24";
+            case 2:return "\uD83D\uDE2B";
+            case 3:return "\uD83D\uDE23";
+            case 4:return "\uD83D\uDE37";
+            case 5:return "\uD83D\uDE36";
+            default : return "\uD83D\uDC7F";
+        }
+    }
+
     public int getItemCount(){
         return notesList.size();
     }
