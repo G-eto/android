@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <item
+        android:id="@+id/action_search"
+        android:icon="@drawable/search"
+        android:orderInCategory="100"
+        android:title="搜索"
+        app:actionViewClass="android.support.v7.widget.SearchView"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_search1"
+        android:orderInCategory="100"
+        android:title="从标签文本搜索"
+        android:tooltipText="kind"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_search2"
+        android:orderInCategory="100"
+        android:title="从一句话中搜索"
+        android:tooltipText="inshort"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_search3"
+        android:orderInCategory="100"
+        android:title="从日记文本搜索"
+        android:tooltipText="note"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_search4"
+        android:orderInCategory="100"
+        android:title="查看收藏的日记"
+        android:tooltipText="state"
+        app:showAsAction="never" />
+
+</menu>

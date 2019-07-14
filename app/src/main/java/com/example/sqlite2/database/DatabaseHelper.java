@@ -194,14 +194,24 @@ Log.d("娶到媳妇：",note.getNote()+"" +note.getKind()+""+note.getWordnumber(
     }
 
     //日历查找
-    public List<Note> findNoteByDate(String date){
+    public List<Note> searchBykey(String kind){
         List<Note> notes = new ArrayList<>();
+        String selectQuery;
+        if(kind.equals("state")){
+            Log.d("uuuuuuuuuuuuuuuuuuuuuuu:",kind);
+            selectQuery = "SELECT * FROM " + Note.TABLE_NAME
+                    + " WHERE " + Note.COLUMN_MOOD  +" BETWEEN 60 AND 100 "
+                    +" ORDER BY " + Note.COLUMN_TIMESTAMP + " DESC";
+        }
+        // Select All Query BETWEEN 25 AND 27;
+        else {
+            Log.d("uuuuuuuuuuuuuuuuuuuuuuu:",kind);
+            selectQuery = "SELECT * FROM " + Note.TABLE_NAME
+                    + " WHERE " + Note.COLUMN_MOOD  +" = 90 "
+                    +" ORDER BY " + Note.COLUMN_TIMESTAMP + " DESC";
+        }
 
-        // Select All Query
-        String selectQuery = "SELECT * FROM " + Note.TABLE_NAME
-                + " WHERE " + Note.COLUMN_TIMESTAMP +" " +" ORDER BY "
-                + Note.COLUMN_TIMESTAMP + " DESC";
-
+        Log.d("hhhhhhhhsfsdgdfgSQL:",selectQuery);
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
 
@@ -231,4 +241,5 @@ Log.d("娶到媳妇：",note.getNote()+"" +note.getKind()+""+note.getWordnumber(
         // return notes list
         return notes;
     }
+
 }

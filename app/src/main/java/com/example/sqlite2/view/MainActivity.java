@@ -2,18 +2,30 @@ package com.example.sqlite2.view;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,7 +51,9 @@ public class MainActivity extends AppCompatActivity {
     private DatabaseHelper db;
 
     static final int TAPS = 3;
-
+    private Toolbar mToolbar;
+    private String search_kind = "ops";
+    private String search_state = "off";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
         db = new DatabaseHelper(this);
 
         notesList.addAll(db.getAllNotes());
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -79,7 +94,64 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+        mToolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);//利用Toolbar代替ActionBar
+        //设置导航Button点击事件
+        ImageView date_image = findViewById(R.id.iv_date);
+        date_image.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(MainActivity.this,"action_date",Toast.LENGTH_SHORT).show();
+            }
+        });
 
+        ImageView back_image = findViewById(R.id.iv_back);
+        back_image.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(MainActivity.this,"action_settings",Toast.LENGTH_SHORT).show();
+            }
+        });
+        //设置移除图片  如果不设置会默认使用系统灰色的图标
+//        mToolbar.setOverflowIcon(getResources().getDrawable(R.drawable.icon_action));
+        mToolbar.inflateMenu(R.menu.toolbar_menu);
+        mToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.action_search1:
+                        //Toast.makeText(MainActivity.this,"action_search_kind",Toast.LENGTH_SHORT).show();
+                        search_kind = "kind";
+                        break;
+                    case R.id.action_search2:
+                        //Toast.makeText(MainActivity.this,"action_search_inshort",Toast.LENGTH_SHORT).show();
+                        search_kind = "inshort";
+                        break;
+                    case R.id.action_search3:
+                        //Toast.makeText(MainActivity.this,"action_search_note",Toast.LENGTH_SHORT).show();
+                        search_kind = "note";
+                        break;
+                    case R.id.action_search4:
+                        //Toast.makeText(MainActivity.this,"action_search_note",Toast.LENGTH_SHORT).show();
+                        search_kind = "state";
+                        search_state = "on";
+                        notesList.clear();
+                        notesList.addAll(db.searchBykey(search_kind));
+                        search_state = "off";
+//                        mAdapter.notify();
+//                        mAdapter.notifyAll();
+                        mAdapter.notifyDataSetChanged();
+                        toggleEmptyNotes();
+                        Toast.makeText(MainActivity.this,String.valueOf(notesList.size()),Toast.LENGTH_SHORT).show();
+                        break;
+                    default:
+                        break;
+                }
+                Log.d("sjdhfksf:",String.valueOf(notesList.size()));
+                return false;
+            }
+        });
 
 
 
@@ -302,5 +374,97 @@ public class MainActivity extends AppCompatActivity {
         } else {
             noNotesView.setVisibility(View.VISIBLE);
         }
+    }
+
+    //@Override
+    public boolean onCreateOptionsMenu1(Menu menu) {
+        //Inflate the menu;this adds items to the action bar if it is present.
+                //引用menu文件
+        getMenuInflater().inflate(R.menu.toolbar_menu, menu);
+
+        //找到SearchView并配置相关参数
+
+        MenuItem menuItem = menu.findItem(R.id.action_search);
+        final SearchView mSearchView = (SearchView) menuItem.getActionView();
+
+        //final SearchView mSearchView = (SearchView) searchItem.getActionView();
+        //搜索图标是否显示在搜索框内
+        mSearchView.setIconifiedByDefault(false);
+        //设置搜索框展开时是否显示提交按钮，可不显示
+        mSearchView.setSubmitButtonEnabled(true);
+        //让键盘的回车键设置成搜索
+        mSearchView.setImeOptions(EditorInfo.IME_ACTION_SEARCH);
+        //搜索框是否展开，false表示展开
+        mSearchView.setIconified(true);
+        //获取焦点
+        mSearchView.setFocusable(true);
+        //mSearchView.requestFocusFromTouch();
+        //设置提示词
+        mSearchView.setQueryHint("请输入关键字");
+        //设置输入框文字颜色
+        EditText editText = (EditText) mSearchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
+        editText.setHintTextColor(ContextCompat.getColor(this, R.color.drawerArrowColor));
+        editText.setTextColor(ContextCompat.getColor(this, R.color.drawerArrowColor));
+
+        // 设置搜索文本监听
+        mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            // 当点击搜索按钮时触发该方法
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+
+                //伪搜索
+                Log.d("search:", query);
+                //清除焦点，收软键盘
+                mSearchView.clearFocus();
+
+                return false;
+            }
+
+            // 当搜索内容改变时触发该方法
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                //do something
+                //当没有输入任何内容的时候清除结果，看实际需求
+                //if (TextUtils.isEmpty(newText)) mSearchResult.setVisibility(View.INVISIBLE);
+                return false;
+            }
+        });
+        return true;
+    }
+
+    public void onCustomView(View view) {
+        startActivity(new Intent(this,CustomToolBarAct.class));
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.toolbar_menu, menu);
+        MenuItem menuItem = menu.findItem(R.id.action_search);
+        final SearchView mSearchView = (SearchView) menuItem.getActionView();
+        mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            // 当点击搜索按钮时触发该方法
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+
+                //伪搜索
+                Log.d("search:", query);
+                //清除焦点，收软键盘
+                mSearchView.clearFocus();
+                search_state = "on";
+                toggleEmptyNotes();
+                return false;
+            }
+
+            // 当搜索内容改变时触发该方法
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                //do something
+                //当没有输入任何内容的时候清除结果，看实际需求
+                //if (TextUtils.isEmpty(newText)) mSearchResult.setVisibility(View.INVISIBLE);
+                return false;
+            }
+        });
+
+        return true;
     }
 }

@@ -171,7 +171,9 @@ public class EditActivity extends Activity {
                     Log.d(tag, "createdone");
                     Toast.makeText(EditActivity.this,"已保存",Toast.LENGTH_SHORT).show();
                     intent2Main();
-
+                }
+                else{
+                    Toast.makeText(EditActivity.this,"Tips:您还没有写什么呢！",Toast.LENGTH_SHORT).show();
                 }
                 Log.d(tag, "saveok");
 
