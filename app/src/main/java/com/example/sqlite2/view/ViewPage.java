@@ -40,6 +40,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import us.feras.mdv.MarkdownView;
+
 public class ViewPage extends Activity {
 
     View view;
@@ -51,7 +53,9 @@ public class ViewPage extends Activity {
 
     private TextView date;
     private TextView weather;
-    private TextView output;
+    //private TextView output;
+
+    private MarkdownView markdownView;
 
     //oncode
     public TextView wordnumber;
@@ -89,7 +93,8 @@ public class ViewPage extends Activity {
 
         db = new DatabaseHelper(this);
         dbcount = db.getNotesCount();
-        output = findViewById(R.id.page_text);
+        //output = findViewById(R.id.page_text);
+        markdownView = findViewById(R.id.page_text);
         date = findViewById(R.id.page_date);
         inshort = findViewById(R.id.page_inshort);
         editfab = findViewById(R.id.edit_fab);
@@ -99,7 +104,7 @@ public class ViewPage extends Activity {
         share = findViewById(R.id.share_page);
         delete = findViewById(R.id.delete_page);
 
-        output.setMovementMethod(ScrollingMovementMethod.getInstance());
+        //output.setMovementMethod(ScrollingMovementMethod.getInstance());
 
         ScrollView scroll = findViewById(R.id.src_over);
         scroll.setVerticalScrollBarEnabled(false);
@@ -157,7 +162,7 @@ public class ViewPage extends Activity {
             @Override
             public void onClick(View view) {
                 ClipboardManager cm = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-                ClipData mClipData = ClipData.newPlainText("Label", output.getText());
+                ClipData mClipData = ClipData.newPlainText("Label", note.getNote());
                 cm.setPrimaryClip(mClipData);
                 Toast.makeText(getApplicationContext(), "复制成功!", Toast.LENGTH_LONG).show();
             }
@@ -174,7 +179,9 @@ public class ViewPage extends Activity {
         share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(ViewPage.this, TestActivity.class);
+                Toast.makeText(ViewPage.this,"已删除",Toast.LENGTH_SHORT).show();
+                startActivity(intent);
             }
         });
 
@@ -248,7 +255,7 @@ public class ViewPage extends Activity {
 
         note = db.getNote(id);
         date.setText(formatDate(note.getTimestamp()));
-        output.setText(note.getNote());
+        markdownView.loadMarkdown(note.getNote());
         weather.setText(note.getWeather());
 
         //oncode

@@ -4,289 +4,318 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/RelativeLayout_edit_top"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/top_menu_Hsize" >
+    <!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+        <!--xmlns:tools="http://schemas.android.com/tools"-->
+        <!--android:id="@+id/RelativeLayout_edit_top"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="@dimen/top_menu_Hsize" >-->
 
-        <TextView
-            android:id="@+id/edit_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/near_padding_size"
-            android:layout_marginBottom="@dimen/dimen_10"
+        <!--<TextView-->
+            <!--android:id="@+id/edit_date"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:layout_marginLeft="@dimen/near_padding_size"-->
+            <!--android:layout_marginBottom="@dimen/dimen_10"-->
 
-            android:layout_toRightOf="@id/edit_back"
-            android:fontFamily="sans-serif-medium"
-            android:lineSpacingExtra="8sp"
-            android:text="@string/lbl_new_note_title"
-            android:textColor="@color/colorAccent"
-            android:textSize="@dimen/lbl_new_note_title"
+            <!--android:layout_toRightOf="@id/edit_back"-->
+            <!--android:fontFamily="sans-serif-medium"-->
+            <!--android:lineSpacingExtra="8sp"-->
+            <!--android:text="@string/lbl_new_note_title"-->
+            <!--android:textColor="@color/colorAccent"-->
+            <!--android:textSize="@dimen/lbl_new_note_title"-->
 
-            android:textStyle="normal" />
-<RelativeLayout
-    android:id="@+id/edit_wordnumber_relativeLayout"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_toLeftOf="@id/edit_save"
-android:layout_marginTop="@dimen/boundary_button_padding_size"
-    android:layout_marginRight="@dimen/margin_size">
-        <TextView
-            android:id="@+id/edit_wordnumber_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/margin_size_top"
-            android:textSize="@dimen/toptext"
-            android:text="@string/fontb"/>
-    <TextView
-        android:id="@+id/edit_wordnumber"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/markfont"
-        android:layout_toRightOf="@id/edit_wordnumber_icon"/>
-</RelativeLayout>
-<RelativeLayout
-    android:id="@+id/edit_mood_value_relativelayout"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_below="@id/edit_wordnumber_relativeLayout"
-android:layout_alignLeft="@id/edit_wordnumber_relativeLayout"
-    android:layout_marginTop="1sp">
+            <!--android:textStyle="normal" />-->
+<!--<RelativeLayout-->
+    <!--android:id="@+id/edit_wordnumber_relativeLayout"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_toLeftOf="@id/edit_save"-->
+<!--android:layout_marginTop="@dimen/boundary_button_padding_size"-->
+    <!--android:layout_marginRight="@dimen/margin_size">-->
+        <!--<TextView-->
+            <!--android:id="@+id/edit_wordnumber_icon"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginRight="@dimen/margin_size_top"-->
+            <!--android:textSize="@dimen/toptext"-->
+            <!--android:text="@string/fontb"/>-->
+    <!--<TextView-->
+        <!--android:id="@+id/edit_wordnumber"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:textSize="@dimen/markfont"-->
+        <!--android:layout_toRightOf="@id/edit_wordnumber_icon"/>-->
+<!--</RelativeLayout>-->
+<!--<RelativeLayout-->
+    <!--android:id="@+id/edit_mood_value_relativelayout"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_below="@id/edit_wordnumber_relativeLayout"-->
+<!--android:layout_alignLeft="@id/edit_wordnumber_relativeLayout"-->
+    <!--android:layout_marginTop="1sp">-->
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/edit_mood_value_icon"
-            android:textSize="@dimen/toptext"
-            android:layout_marginRight="@dimen/margin_size_top"
-            android:text="@string/heart"/>
-        <TextView
-            android:id="@+id/edit_mood_value"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/edit_mood_value_icon"
-            android:textSize="@dimen/markfont"
-            android:text=""
-            />
-</RelativeLayout>
-        <Button
-            android:id="@+id/edit_back"
-            android:text="@string/back"
-            android:textSize="@dimen/buttonfont_size"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:stateListAnimator="@null"
-            android:background="@null"
-            android:layout_centerVertical="true"
-            android:layout_alignParentLeft="true" />
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:id="@+id/edit_mood_value_icon"-->
+            <!--android:textSize="@dimen/toptext"-->
+            <!--android:layout_marginRight="@dimen/margin_size_top"-->
+            <!--android:text="@string/heart"/>-->
+        <!--<TextView-->
+            <!--android:id="@+id/edit_mood_value"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_toRightOf="@id/edit_mood_value_icon"-->
+            <!--android:textSize="@dimen/markfont"-->
+            <!--android:text=""-->
+            <!--/>-->
+<!--</RelativeLayout>-->
+        <!--<Button-->
+            <!--android:id="@+id/edit_back"-->
+            <!--android:text="@string/back"-->
+            <!--android:textSize="@dimen/buttonfont_size"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:stateListAnimator="@null"-->
+            <!--android:background="@null"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:layout_alignParentLeft="true" />-->
 
-        <Button
-            android:id="@+id/edit_save"
-            android:text="@string/save"
-            android:textSize="@dimen/buttonfont_size"
-            android:stateListAnimator="@null"
-            android:background="@null"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true" />
+        <!--<Button-->
+            <!--android:id="@+id/edit_save"-->
+            <!--android:text="@string/save"-->
+            <!--android:textSize="@dimen/buttonfont_size"-->
+            <!--android:stateListAnimator="@null"-->
+            <!--android:background="@null"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:layout_alignParentRight="true" />-->
 
-    </RelativeLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2px"
-        android:background="#000000"/>
+    <!--</RelativeLayout>-->
+    <!--<View-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="2px"-->
+        <!--android:background="#000000"/>-->
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/RelativeLayout_edit_bottom"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" >
-        <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/src"
-            >
-            <RelativeLayout
-                android:id="@+id/RelativeLayout_edit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+    <!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+        <!--xmlns:tools="http://schemas.android.com/tools"-->
+        <!--android:id="@+id/RelativeLayout_edit_bottom"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent" >-->
+        <!--<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:id="@+id/src"-->
+            <!--&gt;-->
+            <!--<RelativeLayout-->
+                <!--android:id="@+id/RelativeLayout_edit"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content">-->
 
-                <RelativeLayout
-                    android:id="@+id/edit_mood_relative"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/top_menu_Hsize">
-                    <TextView
-                        android:id="@+id/edit_mood_icon"
-                        android:paddingTop="3dp"
-                        android:layout_width="@dimen/button_2_Wsize"
-                        android:layout_height="@dimen/button_2_Hsize"
-                        android:layout_margin="@dimen/margin_size_top"
-                        android:textSize="@dimen/buttonfont_size_mid"
-                        android:text="😶"
-                        android:layout_alignParentStart="true"
-                        android:layout_centerHorizontal="true"
-                        />
-                    <SeekBar
-                        android:id="@+id/edit_mood"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:layout_centerVertical="true"
-                        android:layout_toRightOf="@id/edit_mood_icon"
-                        android:maxHeight="2dp"
-                        android:minHeight="2dp"
-                        android:paddingBottom="3dp"
-                        android:paddingLeft="12dp"
-                        android:max="200"
-                        android:min="0"
-                        android:progress="100"
-                        android:paddingRight="12dp"
-                        android:paddingTop="3dp"
-                        android:progressDrawable="@drawable/layer_progress"
-                        android:thumb="@drawable/shape_circle" />
-                </RelativeLayout>
+                <!--<RelativeLayout-->
+                    <!--android:id="@+id/edit_mood_relative"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="@dimen/top_menu_Hsize">-->
+                    <!--<TextView-->
+                        <!--android:id="@+id/edit_mood_icon"-->
+                        <!--android:paddingTop="3dp"-->
+                        <!--android:layout_width="@dimen/button_2_Wsize"-->
+                        <!--android:layout_height="@dimen/button_2_Hsize"-->
+                        <!--android:layout_margin="@dimen/margin_size_top"-->
+                        <!--android:textSize="@dimen/buttonfont_size_mid"-->
+                        <!--android:text="😶"-->
+                        <!--android:layout_alignParentStart="true"-->
+                        <!--android:layout_centerHorizontal="true"-->
+                        <!--/>-->
+                    <!--<SeekBar-->
+                        <!--android:id="@+id/edit_mood"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_centerHorizontal="true"-->
+                        <!--android:layout_centerVertical="true"-->
+                        <!--android:layout_toRightOf="@id/edit_mood_icon"-->
+                        <!--android:maxHeight="2dp"-->
+                        <!--android:minHeight="2dp"-->
+                        <!--android:paddingBottom="3dp"-->
+                        <!--android:paddingLeft="12dp"-->
+                        <!--android:max="200"-->
+                        <!--android:min="0"-->
+                        <!--android:progress="100"-->
+                        <!--android:paddingRight="12dp"-->
+                        <!--android:paddingTop="3dp"-->
+                        <!--android:progressDrawable="@drawable/layer_progress"-->
+                        <!--android:thumb="@drawable/shape_circle" />-->
+                <!--</RelativeLayout>-->
+                <!--<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:id="@+id/src_markdown"-->
+                    <!--android:layout_below="@id/edit_mood_relative"-->
+                    <!--&gt;-->
+                <!--<us.feras.mdv.MarkdownView-->
+                    <!--android:id="@+id/markdownView"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:minHeight="@dimen/edit_text_high_size"-->
+                    <!--&gt;-->
+                <!--</us.feras.mdv.MarkdownView>-->
+                <!--</ScrollView>-->
+                <!--<EditText-->
+                    <!--android:id="@+id/edit_text"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:layout_marginLeft="@dimen/margin_size"-->
+                    <!--android:layout_marginRight="@dimen/margin_size"-->
+                    <!--android:background="@android:color/transparent"-->
+                    <!--android:paddingBottom="@dimen/text_paddindbutton_size"-->
+                    <!--android:layout_below="@id/src_markdown"-->
+                    <!--android:minHeight="@dimen/edit_text_high_size"-->
+                    <!--android:gravity="top"-->
+                    <!--android:hint="@string/hint_enter_note"-->
+                    <!--android:inputType="textCapSentences|textMultiLine"-->
+                    <!--android:textColorHint="@color/hint_enter_note"-->
+                    <!--android:textSize="@dimen/input_new_note"-->
+                    <!--/>-->
+                <!--<RelativeLayout-->
+                    <!--android:id="@+id/edit_image_relative"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_below="@id/edit_text">-->
+                    <!--<ImageView-->
+                        <!--android:id="@+id/edit_image_icon"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:src="@drawable/plusp"/>-->
+                    <!--<ImageView-->
+                        <!--android:id="@+id/img_test"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_toRightOf="@id/edit_image_icon"/>-->
+                <!--</RelativeLayout>-->
 
-                <EditText
-                    android:id="@+id/edit_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="@dimen/margin_size"
-                    android:layout_marginRight="@dimen/margin_size"
-                    android:background="@android:color/transparent"
-                    android:paddingBottom="@dimen/text_paddindbutton_size"
-                    android:layout_below="@id/edit_mood_relative"
-                    android:minHeight="@dimen/edit_text_high_size"
-                    android:gravity="top"
-                    android:hint="@string/hint_enter_note"
-                    android:inputType="textCapSentences|textMultiLine"
-                    android:textColorHint="@color/hint_enter_note"
-                    android:textSize="@dimen/input_new_note"
-                    />
+                <!--<RelativeLayout-->
+                    <!--android:id="@+id/edit_weather_relative"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_below="@id/edit_image_relative">-->
+                    <!--<Button-->
+                        <!--android:id="@+id/edit_weather_icon"-->
+                        <!--android:stateListAnimator="@null"-->
+                        <!--android:background="@null"-->
+                        <!--android:layout_width="@dimen/button_2_Wsize"-->
+                        <!--android:layout_height="@dimen/button_2_Hsize"-->
+                        <!--android:layout_marginTop="@dimen/margin_size_top"-->
+                        <!--android:layout_marginLeft="@dimen/margin_size_top"-->
 
-                <RelativeLayout
-                    android:id="@+id/edit_weather_relative"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/edit_text">
-                    <Button
-                        android:id="@+id/edit_weather_icon"
-                        android:stateListAnimator="@null"
-                        android:background="@null"
-                        android:layout_width="@dimen/button_2_Wsize"
-                        android:layout_height="@dimen/button_2_Hsize"
-                        android:layout_marginTop="@dimen/margin_size_top"
-                        android:layout_marginLeft="@dimen/margin_size_top"
-
-                        android:textSize="@dimen/textfont"
-                        android:text="@string/eye"
-                        android:layout_alignParentStart="true"
-                        />
-                    <TextView
-                        android:id="@+id/edit_weather"
-                        android:layout_marginTop="@dimen/margin_size_top"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_toRightOf="@id/edit_weather_icon"
-                        android:layout_alignBottom="@id/edit_weather_icon"
-                        android:textSize="@dimen/textfont"
-                        android:text="天气"/>
-                </RelativeLayout>
-
-
-                <RelativeLayout
-                    android:id="@+id/edit_location_relative"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/edit_weather_relative">
-                    <Button
-                        android:id="@+id/edit_location_icon"
-                        android:stateListAnimator="@null"
-                        android:background="@null"
-                        android:layout_width="@dimen/button_2_Wsize"
-                        android:layout_height="@dimen/button_2_Hsize"
-                        android:layout_marginTop="@dimen/margin_size_top"
-                        android:layout_marginLeft="@dimen/margin_size_top"
-                        android:textSize="@dimen/textfont"
-                        android:text="@string/location"
-                        android:layout_alignParentStart="true"
-                        />
-                    <TextView
-                        android:id="@+id/edit_location"
-                        android:layout_marginTop="@dimen/margin_size_top"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignBottom="@id/edit_location_icon"
-                        android:layout_toRightOf="@id/edit_location_icon"
-                        android:textSize="@dimen/textfont"
-                        android:text="北京南口"/>
-                </RelativeLayout>
-
-
-                <RelativeLayout
-                    android:id="@+id/edit_mark_relative"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/edit_location_relative"
-                    android:paddingBottom="@dimen/boundary_button_padding_size">
-                    <Button
-                        android:id="@+id/edit_mark_icon"
-                        android:stateListAnimator="@null"
-                        android:background="@null"
-                        android:layout_width="@dimen/button_2_Wsize"
-                        android:layout_height="@dimen/button_2_Hsize"
-                        android:layout_marginTop="@dimen/margin_size_top"
-                        android:layout_marginLeft="@dimen/margin_size_top"
-                        android:textSize="@dimen/textfont"
-                        android:text="@string/star"
-                        android:layout_alignParentStart="true"
-                        />
-                    <TextView
-                        android:id="@+id/edit_mark"
-                        android:layout_marginTop="@dimen/margin_size_top"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignBottom="@id/edit_mark_icon"
-                        android:layout_toRightOf="@id/edit_mark_icon"
-                        android:textSize="@dimen/textfont"
-                        android:text="日记"/>
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/edit_inshort_relative"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/edit_mark_relative"
-                    android:paddingBottom="@dimen/boundary_button_padding_size">
-                    <Button
-                        android:id="@+id/edit_inshort_icon"
-                        android:stateListAnimator="@null"
-                        android:background="@null"
-                        android:layout_width="@dimen/button_2_Wsize"
-                        android:layout_height="@dimen/button_2_Hsize"
-                        android:layout_marginTop="@dimen/margin_size_top"
-                        android:layout_marginLeft="@dimen/margin_size_top"
-                        android:textSize="@dimen/textfont"
-                        android:text="@string/message"
-                        android:layout_alignParentStart="true"
-                        />
-                    <TextView
-                        android:id="@+id/edit_inshort"
-                        android:layout_marginTop="@dimen/margin_size_top"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignBottom="@id/edit_inshort_icon"
-                        android:layout_toRightOf="@id/edit_inshort_icon"
-                        android:textSize="@dimen/textfont"
-                        android:text=""/>
-                </RelativeLayout>
+                        <!--android:textSize="@dimen/textfont"-->
+                        <!--android:text="@string/eye"-->
+                        <!--android:layout_alignParentStart="true"-->
+                        <!--/>-->
+                    <!--<TextView-->
+                        <!--android:id="@+id/edit_weather"-->
+                        <!--android:layout_marginTop="@dimen/margin_size_top"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_toRightOf="@id/edit_weather_icon"-->
+                        <!--android:layout_alignBottom="@id/edit_weather_icon"-->
+                        <!--android:textSize="@dimen/textfont"-->
+                        <!--android:text="天气"/>-->
+                <!--</RelativeLayout>-->
 
 
-            </RelativeLayout>
+                <!--<RelativeLayout-->
+                    <!--android:id="@+id/edit_location_relative"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_below="@id/edit_weather_relative">-->
+                    <!--<Button-->
+                        <!--android:id="@+id/edit_location_icon"-->
+                        <!--android:stateListAnimator="@null"-->
+                        <!--android:background="@null"-->
+                        <!--android:layout_width="@dimen/button_2_Wsize"-->
+                        <!--android:layout_height="@dimen/button_2_Hsize"-->
+                        <!--android:layout_marginTop="@dimen/margin_size_top"-->
+                        <!--android:layout_marginLeft="@dimen/margin_size_top"-->
+                        <!--android:textSize="@dimen/textfont"-->
+                        <!--android:text="@string/location"-->
+                        <!--android:layout_alignParentStart="true"-->
+                        <!--/>-->
+                    <!--<TextView-->
+                        <!--android:id="@+id/edit_location"-->
+                        <!--android:layout_marginTop="@dimen/margin_size_top"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_alignBottom="@id/edit_location_icon"-->
+                        <!--android:layout_toRightOf="@id/edit_location_icon"-->
+                        <!--android:textSize="@dimen/textfont"-->
+                        <!--android:text="北京南口"/>-->
+                <!--</RelativeLayout>-->
 
 
-        </ScrollView>
-    </RelativeLayout>
+                <!--<RelativeLayout-->
+                    <!--android:id="@+id/edit_mark_relative"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_below="@id/edit_location_relative"-->
+                    <!--android:paddingBottom="@dimen/boundary_button_padding_size">-->
+                    <!--<Button-->
+                        <!--android:id="@+id/edit_mark_icon"-->
+                        <!--android:stateListAnimator="@null"-->
+                        <!--android:background="@null"-->
+                        <!--android:layout_width="@dimen/button_2_Wsize"-->
+                        <!--android:layout_height="@dimen/button_2_Hsize"-->
+                        <!--android:layout_marginTop="@dimen/margin_size_top"-->
+                        <!--android:layout_marginLeft="@dimen/margin_size_top"-->
+                        <!--android:textSize="@dimen/textfont"-->
+                        <!--android:text="@string/star"-->
+                        <!--android:layout_alignParentStart="true"-->
+                        <!--/>-->
+                    <!--<TextView-->
+                        <!--android:id="@+id/edit_mark"-->
+                        <!--android:layout_marginTop="@dimen/margin_size_top"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_alignBottom="@id/edit_mark_icon"-->
+                        <!--android:layout_toRightOf="@id/edit_mark_icon"-->
+                        <!--android:textSize="@dimen/textfont"-->
+                        <!--android:text="日记"/>-->
+                <!--</RelativeLayout>-->
+
+                <!--<RelativeLayout-->
+                    <!--android:id="@+id/edit_inshort_relative"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_below="@id/edit_mark_relative"-->
+                    <!--android:paddingBottom="@dimen/boundary_button_padding_size">-->
+                    <!--<Button-->
+                        <!--android:id="@+id/edit_inshort_icon"-->
+                        <!--android:stateListAnimator="@null"-->
+                        <!--android:background="@null"-->
+                        <!--android:layout_width="@dimen/button_2_Wsize"-->
+                        <!--android:layout_height="@dimen/button_2_Hsize"-->
+                        <!--android:layout_marginTop="@dimen/margin_size_top"-->
+                        <!--android:layout_marginLeft="@dimen/margin_size_top"-->
+                        <!--android:textSize="@dimen/textfont"-->
+                        <!--android:text="@string/message"-->
+                        <!--android:layout_alignParentStart="true"-->
+                        <!--/>-->
+                    <!--<TextView-->
+                        <!--android:id="@+id/edit_inshort"-->
+                        <!--android:layout_marginTop="@dimen/margin_size_top"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_alignBottom="@id/edit_inshort_icon"-->
+                        <!--android:layout_toRightOf="@id/edit_inshort_icon"-->
+                        <!--android:textSize="@dimen/textfont"-->
+                        <!--android:text=""/>-->
+                <!--</RelativeLayout>-->
+
+
+            <!--</RelativeLayout>-->
+
+
+        <!--</ScrollView>-->
+    <!--</RelativeLayout>-->
 </LinearLayout>

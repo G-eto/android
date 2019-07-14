@@ -17,11 +17,14 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import us.feras.mdv.MarkdownView;
+
 public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.MyViewHolder> {
     private Context context;
     private List<Note> notesList;
     public class MyViewHolder extends RecyclerView.ViewHolder{
-        public TextView note_text;
+        //public TextView note_text;
+        public MarkdownView item_markdown;
         public TextView dot;
         public TextView timestamp;//date
         public TextView wordnumber;
@@ -39,7 +42,8 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.MyViewHolder
 
         public MyViewHolder(View view){
             super(view);
-            note_text = view.findViewById(R.id.dialog_input);
+            item_markdown = view.findViewById(R.id.item_markdown);
+            //note_text = view.findViewById(R.id.dialog_input);
             //dot = view.findViewById(R.id.dot);
             timestamp = view.findViewById(R.id.timestamp);
             wordnumber = view.findViewById(R.id.wordnumber);
@@ -63,8 +67,9 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.MyViewHolder
     public void onBindViewHolder(MyViewHolder holder, int position){
         Note note = notesList.get(position);
         if(note.getWordnumber() > 105)
-            holder.note_text.setLines(7);
-        holder.note_text.setText(note.getNote());
+            holder.item_markdown.loadMarkdown((note.getInshort()+"\n"+note.getNote()).substring(0, 105));
+        else
+            holder.item_markdown.loadMarkdown(note.getInshort()+"\n"+note.getNote());
         //holder.dot.setText(Html.fromHtml("&#8226;"));
         holder.timestamp.setText(formatDate(note.getTimestamp()));
         holder.weather.setText("☀"+note.getWeather()+"    ");

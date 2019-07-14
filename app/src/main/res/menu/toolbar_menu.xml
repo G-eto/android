@@ -12,24 +12,30 @@
     <item
         android:id="@+id/action_search1"
         android:orderInCategory="100"
-        android:title="从标签文本搜索"
+        android:title="从标签查询"
         android:tooltipText="kind"
         app:showAsAction="never" />
     <item
         android:id="@+id/action_search2"
         android:orderInCategory="100"
-        android:title="从一句话中搜索"
+        android:title="从总结查询"
         android:tooltipText="inshort"
         app:showAsAction="never" />
     <item
         android:id="@+id/action_search3"
         android:orderInCategory="100"
-        android:title="从日记文本搜索"
+        android:title="从日记查询"
         android:tooltipText="note"
         app:showAsAction="never" />
     <item
-        android:id="@+id/action_search4"
+        android:id="@+id/action_search5"
         android:orderInCategory="100"
+        android:title="按日期查询"
+        android:tooltipText="date"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_search4"
+        android:orderInCategory="99"
         android:title="查看收藏的日记"
         android:tooltipText="state"
         app:showAsAction="never" />

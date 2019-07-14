@@ -20,7 +20,7 @@
             android:layout_toEndOf="@id/page_back"
             android:fontFamily="sans-serif-medium"
             android:lineSpacingExtra="8sp"
-            android:text="12日/7月"
+            android:text=""
             android:textColor="@color/colorAccent"
             android:textSize="@dimen/Title"
             android:textStyle="normal" />
@@ -94,20 +94,24 @@
                 android:layout_height="wrap_content"
                 android:paddingBottom="@dimen/boundary_button_padding_size">
 
-                <TextView
+                <us.feras.mdv.MarkdownView
                     android:id="@+id/page_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/margin_size"
+                    android:layout_marginStart="@dimen/margin_size_top"
                     android:layout_marginTop="@dimen/margin_size"
-                    android:layout_marginEnd="@dimen/margin_size"
+                    android:layout_marginEnd="@dimen/margin_size_top"
                     android:background="@android:color/transparent"
                     android:gravity="top"
                     android:hint="@string/hint_enter_note"
+                    android:minHeight="@dimen/edit_text_high_size"
                     android:paddingBottom="@dimen/margin_size"
                     android:scrollbars="none"
                     android:textColorHint="@color/hint_enter_note"
-                    android:textSize="@dimen/input_new_note" />
+                    android:textSize="@dimen/input_new_note"
+                    >
+
+                </us.feras.mdv.MarkdownView>
 
                 <RelativeLayout
                     android:id="@+id/page_kind_relative"

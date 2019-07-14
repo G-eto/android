@@ -7,8 +7,16 @@
     android:layout_height="match_parent"
     tools:context="com.example.sqlite2.view.MainActivity"
     >
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/refreshLayout"
+        app:srlPrimaryColor="#000000"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <include layout="@layout/content_main"/>
+    <include layout="@layout/content_main" />
+
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
@@ -16,7 +24,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
+        android:src="@drawable/pen"
+        app:backgroundTint="@color/colorPrimary"
+        />
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -39,15 +49,7 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/menu"
                 android:layout_centerVertical="true"
-                />
-            <ImageView
-                android:id="@+id/iv_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/date"
-                android:layout_toRightOf="@id/iv_back"
-                android:layout_marginLeft="@dimen/button_2_Hsize"
-                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/margin_size"
                 />
             <TextView
                 android:layout_width="wrap_content"
@@ -55,7 +57,7 @@
                 android:textColor="#fff"
                 android:text="日记本"
                 android:textSize="@dimen/toptext"
-                android:layout_toRightOf="@id/iv_date"
+                android:layout_toRightOf="@id/iv_back"
                 android:layout_marginLeft="@dimen/title_toolbar"
                 />
 
@@ -77,6 +79,5 @@
                 />
         </RelativeLayout>
     </android.support.v7.widget.Toolbar>
-
 
 </android.support.design.widget.CoordinatorLayout>

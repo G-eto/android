@@ -194,21 +194,26 @@ Log.d("娶到媳妇：",note.getNote()+"" +note.getKind()+""+note.getWordnumber(
     }
 
     //日历查找
-    public List<Note> searchBykey(String kind){
+    public List<Note> searchBykey(String kind, String key){
         List<Note> notes = new ArrayList<>();
         String selectQuery;
         if(kind.equals("state")){
             Log.d("uuuuuuuuuuuuuuuuuuuuuuu:",kind);
             selectQuery = "SELECT * FROM " + Note.TABLE_NAME
-                    + " WHERE " + Note.COLUMN_MOOD  +" BETWEEN 60 AND 100 "
+                    + " WHERE " + Note.COLUMN_STATE  +" = 'star' "
                     +" ORDER BY " + Note.COLUMN_TIMESTAMP + " DESC";
         }
         // Select All Query BETWEEN 25 AND 27;
-        else {
-            Log.d("uuuuuuuuuuuuuuuuuuuuuuu:",kind);
+//        else if(kind.equals("date")){
+//            Log.d("uuuuuuuuuuuuuuuuuuuuuuu:",kind);
+//            selectQuery = "SELECT * FROM " + Note.TABLE_NAME
+//                    + " WHERE " + Note.COLUMN_MOOD  +" = 90 "
+//                    +" ORDER BY " + Note.COLUMN_TIMESTAMP + " DESC";
+//        }
+        else{
             selectQuery = "SELECT * FROM " + Note.TABLE_NAME
-                    + " WHERE " + Note.COLUMN_MOOD  +" = 90 "
-                    +" ORDER BY " + Note.COLUMN_TIMESTAMP + " DESC";
+                    + " WHERE " + kind + " LIKE " + " '%" + key +"%' "
+                    + "ORDER BY " + Note.COLUMN_TIMESTAMP + " DESC";
         }
 
         Log.d("hhhhhhhhsfsdgdfgSQL:",selectQuery);

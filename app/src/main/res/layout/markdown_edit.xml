@@ -1,0 +1,337 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/markdown_edit"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/RelativeLayout_edit_top"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/top_menu_Hsize" >
+
+        <TextView
+            android:id="@+id/edit_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/near_padding_size"
+            android:layout_marginBottom="@dimen/dimen_10"
+
+            android:layout_toRightOf="@id/edit_back"
+            android:fontFamily="sans-serif-medium"
+            android:lineSpacingExtra="8sp"
+            android:text="@string/lbl_new_note_title"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/lbl_new_note_title"
+
+            android:textStyle="normal" />
+        <RelativeLayout
+            android:id="@+id/edit_wordnumber_relativeLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/edit_save"
+            android:layout_marginTop="@dimen/boundary_button_padding_size"
+            android:layout_marginRight="@dimen/margin_size">
+            <ImageView
+                android:id="@+id/edit_wordnumber_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/pen_55"
+                android:layout_marginRight="@dimen/margin_size_top"/>
+            <TextView
+                android:id="@+id/edit_wordnumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/markfont"
+                android:layout_toRightOf="@id/edit_wordnumber_icon"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/edit_mood_value_relativelayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/edit_wordnumber_relativeLayout"
+            android:layout_alignLeft="@id/edit_wordnumber_relativeLayout"
+            android:layout_marginTop="1sp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/edit_mood_value_icon"
+                android:src="@drawable/heart_black64"
+                android:layout_marginRight="@dimen/margin_size_top" />
+            <TextView
+                android:id="@+id/edit_mood_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/edit_mood_value_icon"
+                android:textSize="@dimen/markfont"
+                android:text=""
+                />
+        </RelativeLayout>
+        <Button
+            android:id="@+id/edit_back"
+            android:text="@string/back"
+            android:textSize="@dimen/buttonfont_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:stateListAnimator="@null"
+            android:background="@null"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true" />
+
+        <Button
+            android:id="@+id/edit_save"
+            android:text="@string/save"
+            android:textSize="@dimen/buttonfont_size"
+            android:stateListAnimator="@null"
+            android:background="@null"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true" />
+    </RelativeLayout>
+
+    <!--分割线-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2px"
+        android:layout_below="@id/RelativeLayout_edit_top"
+        android:background="#000000"/>
+
+    <!--markdown preview-->
+    <ScrollView
+        android:id="@+id/edit_markdown_ScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/markdown_preview_high"
+        android:layout_below="@id/RelativeLayout_edit_top">
+        <us.feras.mdv.MarkdownView
+            android:id="@+id/edit_markdownView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </us.feras.mdv.MarkdownView>
+    </ScrollView>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2px"
+        android:layout_below="@id/edit_markdown_ScrollView"
+        android:background="#000000"/>
+    <!--input-->
+    <ScrollView
+        android:id="@+id/edit_input_ScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/edit_markdown_ScrollView"
+        android:layout_above="@+id/edit_tools">
+        <RelativeLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/edit_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:hint="欢迎使用markdown写日记"
+                android:gravity="top"
+                android:inputType="textCapSentences|textMultiLine"/>
+            <RelativeLayout
+                android:id="@+id/edit_weather_relative"
+                android:layout_marginTop="@dimen/margin_size"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/edit_text">
+                <ImageView
+                    android:id="@+id/edit_weather_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_size_top"
+                    android:layout_marginLeft="@dimen/margin_size_top"
+                    android:layout_marginRight="@dimen/margin_size_top"
+                    android:layout_alignParentStart="true"
+                    android:src="@drawable/weather_72"
+                    />
+                <TextView
+                    android:id="@+id/edit_weather"
+                    android:layout_marginTop="@dimen/margin_size_top"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/edit_weather_icon"
+                    android:layout_alignBottom="@id/edit_weather_icon"
+                    android:textSize="@dimen/textfont"
+                    android:text="天气"/>
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/edit_location_relative"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/edit_weather_relative">
+                <ImageView
+                    android:id="@+id/edit_location_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/margin_size_top"
+                    android:layout_marginTop="@dimen/margin_size_top"
+                    android:layout_marginLeft="@dimen/margin_size_top"
+                    android:layout_alignParentStart="true"
+                    android:src="@drawable/location72"
+                    />
+                <TextView
+                    android:id="@+id/edit_location"
+                    android:layout_marginTop="@dimen/margin_size_top"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/edit_location_icon"
+                    android:layout_toRightOf="@id/edit_location_icon"
+                    android:textSize="@dimen/textfont"
+                    android:text="北京南口"/>
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/edit_mark_relative"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/edit_location_relative">
+                <ImageView
+                    android:id="@+id/edit_mark_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/margin_size_top"
+                    android:layout_marginTop="@dimen/margin_size_top"
+                    android:layout_marginLeft="@dimen/margin_size_top"
+                    android:src="@drawable/kinds72"
+                    android:layout_alignParentStart="true"
+                    />
+                <TextView
+                    android:id="@+id/edit_mark"
+                    android:layout_marginTop="@dimen/margin_size_top"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/edit_mark_icon"
+                    android:layout_toRightOf="@id/edit_mark_icon"
+                    android:textSize="@dimen/textfont"
+                    android:text="日记"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/edit_inshort_relative"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/edit_mark_relative"
+                android:paddingBottom="@dimen/boundary_button_padding_size">
+                <ImageView
+                    android:id="@+id/edit_inshort_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/margin_size_top"
+                    android:layout_marginTop="@dimen/margin_size_top"
+                    android:layout_marginLeft="@dimen/margin_size_top"
+                    android:layout_alignParentStart="true"
+                    android:src="@drawable/message_72"
+                    />
+                <TextView
+                    android:id="@+id/edit_inshort"
+                    android:layout_marginTop="@dimen/margin_size_top"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/edit_inshort_icon"
+                    android:layout_toRightOf="@id/edit_inshort_icon"
+                    android:textSize="@dimen/textfont"
+                    android:text="今天怎么样"/>
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </ScrollView>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2px"
+        android:layout_below="@id/edit_input_ScrollView"
+        android:background="#000000"/>
+    <!--tools button-->
+    <LinearLayout
+        android:id="@+id/edit_tools"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/top_menu2_Hsize"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/edit_tool_location_icon"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:src="@drawable/location72"
+            android:layout_gravity="center_vertical"/>
+
+        <ImageView
+            android:id="@+id/edit_tool_weather_icon"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/weather_72"/>
+
+        <ImageView
+            android:id="@+id/edit_tool_inshort_icon"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/message_72"/>
+
+        <ImageView
+            android:id="@+id/edit_tool_kind_icon"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/kinds72"/>
+
+        <ImageView
+            android:id="@+id/edit_tool_mood_icon"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/heart_red72"/>
+
+        <ImageView
+            android:id="@+id/edit_tool_no_md"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_gravity="center_vertical"
+            android:layout_height="wrap_content"
+            android:src="@drawable/nopreview72"/>
+
+        <ImageView
+            android:id="@+id/edit_tool_and_md"
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/doublepage72"/>
+
+        <ImageView
+            android:id="@+id/edit_tool_md_preview"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_gravity="center_vertical"
+            android:layout_height="wrap_content"
+            android:src="@drawable/paper_81"/>
+        <ImageView
+            android:id="@+id/edit_tool_image_icon"
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/plus_72"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -39,6 +39,12 @@ import java.util.List;
 
 import com.example.sqlite2.utils.OnItemTouchListener;
 import com.github.florent37.materialviewpager.MaterialViewPager;
+import com.scwang.smartrefresh.header.MaterialHeader;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
+import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
+import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 public class MainActivity extends AppCompatActivity {
     private NotesAdapter mAdapter;
@@ -62,6 +68,33 @@ public class MainActivity extends AppCompatActivity {
 
 //        Toolbar toolbar = findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
+
+        //下拉刷新
+        RefreshLayout refreshLayout = (RefreshLayout)findViewById(R.id.refreshLayout);
+        refreshLayout.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(RefreshLayout refreshlayout) {
+                notesList.clear();
+                notesList.addAll(db.getAllNotes());
+                mAdapter.notifyDataSetChanged();
+                refreshlayout.finishRefresh(1000/*,false*/);//传入false表示刷新失败
+                Toast.makeText(MainActivity.this,"已刷新",Toast.LENGTH_SHORT).show();
+            }
+        });
+        refreshLayout.setOnLoadmoreListener(new OnLoadmoreListener() {
+            @Override
+            public void onLoadmore(RefreshLayout refreshlayout) {
+                refreshlayout.finishLoadmore(2000/*,false*/);//传入false表示加载失败
+            }
+        });
+
+        refreshLayout = (RefreshLayout) findViewById(R.id.refreshLayout);
+//设置 Header 为 Material样式
+        refreshLayout.setRefreshHeader(new MaterialHeader(this).setShowBezierWave(true));
+//设置 Footer 为 球脉冲
+        refreshLayout.setRefreshFooter(new BallPulseFooter(this).setSpinnerStyle(SpinnerStyle.Scale));
+
+
 
         coordinatorLayout = findViewById(R.id.coordinator_layout);
         recyclerView = findViewById(R.id.recycler_view);
@@ -89,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.addItemDecoration(new MyDividerItemDecoration(this, LinearLayoutManager.VERTICAL, 16));
+        //recyclerView.addItemDecoration(new MyDividerItemDecoration(this, LinearLayoutManager.VERTICAL, 16));
         recyclerView.setAdapter(mAdapter);
 
 
@@ -97,13 +130,13 @@ public class MainActivity extends AppCompatActivity {
         mToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);//利用Toolbar代替ActionBar
         //设置导航Button点击事件
-        ImageView date_image = findViewById(R.id.iv_date);
-        date_image.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(MainActivity.this,"action_date",Toast.LENGTH_SHORT).show();
-            }
-        });
+//        ImageView date_image = findViewById(R.id.iv_refresh);
+////        date_image.setOnClickListener(new View.OnClickListener(){
+////            @Override
+////            public void onClick(View view) {
+////
+////            }
+////        });
 
         ImageView back_image = findViewById(R.id.iv_back);
         back_image.setOnClickListener(new View.OnClickListener(){
@@ -121,14 +154,17 @@ public class MainActivity extends AppCompatActivity {
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.action_search1:
+                        search_state = "on";
                         //Toast.makeText(MainActivity.this,"action_search_kind",Toast.LENGTH_SHORT).show();
                         search_kind = "kind";
                         break;
                     case R.id.action_search2:
+                        search_state = "on";
                         //Toast.makeText(MainActivity.this,"action_search_inshort",Toast.LENGTH_SHORT).show();
                         search_kind = "inshort";
                         break;
                     case R.id.action_search3:
+                        search_state = "on";
                         //Toast.makeText(MainActivity.this,"action_search_note",Toast.LENGTH_SHORT).show();
                         search_kind = "note";
                         break;
@@ -137,7 +173,7 @@ public class MainActivity extends AppCompatActivity {
                         search_kind = "state";
                         search_state = "on";
                         notesList.clear();
-                        notesList.addAll(db.searchBykey(search_kind));
+                        notesList.addAll(db.searchBykey(search_kind, null));
                         search_state = "off";
 //                        mAdapter.notify();
 //                        mAdapter.notifyAll();
@@ -145,7 +181,13 @@ public class MainActivity extends AppCompatActivity {
                         toggleEmptyNotes();
                         Toast.makeText(MainActivity.this,String.valueOf(notesList.size()),Toast.LENGTH_SHORT).show();
                         break;
-                    default:
+                    case R.id.action_search5:
+                        search_state = "on";
+                        //Toast.makeText(MainActivity.this,"action_search_note",Toast.LENGTH_SHORT).show();
+                        search_kind = "timestamp";
+                        break;
+                    default:search_kind = "ops";
+                        search_state = "off";
                         break;
                 }
                 Log.d("sjdhfksf:",String.valueOf(notesList.size()));
@@ -446,11 +488,18 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextSubmit(String query) {
 
+                if(search_kind.equals("ops"))
+                    search_kind = "note";
                 //伪搜索
                 Log.d("search:", query);
-                //清除焦点，收软键盘
                 mSearchView.clearFocus();
-                search_state = "on";
+                notesList.clear();
+                notesList.addAll(db.searchBykey(search_kind, query));
+                search_state = "off";
+//                        mAdapter.notify();
+//                        mAdapter.notifyAll();
+                mAdapter.notifyDataSetChanged();
+                //清除焦点，收软键盘
                 toggleEmptyNotes();
                 return false;
             }
@@ -458,6 +507,16 @@ public class MainActivity extends AppCompatActivity {
             // 当搜索内容改变时触发该方法
             @Override
             public boolean onQueryTextChange(String newText) {
+                if(search_kind.equals("ops"))
+                    search_kind = "note";
+                notesList.clear();
+                notesList.addAll(db.searchBykey(search_kind, newText));
+                search_state = "off";
+//                        mAdapter.notify();
+//                        mAdapter.notifyAll();
+                mAdapter.notifyDataSetChanged();
+                //清除焦点，收软键盘
+                toggleEmptyNotes();
                 //do something
                 //当没有输入任何内容的时候清除结果，看实际需求
                 //if (TextUtils.isEmpty(newText)) mSearchResult.setVisibility(View.INVISIBLE);
