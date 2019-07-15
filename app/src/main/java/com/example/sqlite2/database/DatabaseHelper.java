@@ -247,4 +247,35 @@ Log.d("娶到媳妇：",note.getNote()+"" +note.getKind()+""+note.getWordnumber(
         return notes;
     }
 
+    public List<Note> getAllNotesDatas() {
+        List<Note> notes = new ArrayList<>();
+
+        // Select All Query
+        String selectQuery = "SELECT "+ Note.COLUMN_TIMESTAMP +" ,"
+                + Note.COLUMN_WORDNUMBER +" ,"
+                + Note.COLUMN_MOOD
+                +" FROM " + Note.TABLE_NAME + " ORDER BY "
+                + Note.COLUMN_TIMESTAMP + " ASC";
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                Note note = new Note();
+                note.setTimestamp(cursor.getString(cursor.getColumnIndex(Note.COLUMN_TIMESTAMP)));
+                note.setWordnumber(cursor.getInt(cursor.getColumnIndex(Note.COLUMN_WORDNUMBER)));
+                note.setMood(cursor.getInt(cursor.getColumnIndex(Note.COLUMN_MOOD)));
+                notes.add(note);
+            } while (cursor.moveToNext());
+        }
+
+        // close db connection
+        db.close();
+
+        // return notes list
+        return notes;
+    }
+
 }

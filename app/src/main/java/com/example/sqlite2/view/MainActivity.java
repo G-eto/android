@@ -147,6 +147,9 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, ChartActivity.class);
+                startActivity(intent);
+
                 Toast.makeText(MainActivity.this,"action_settings",Toast.LENGTH_SHORT).show();
             }
         });

@@ -17,7 +17,7 @@
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"
-        android:background="@color/green_teal"
+        android:background="#F0E2FA"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/bg_pic"/>

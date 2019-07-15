@@ -459,8 +459,7 @@ public class EditActivity extends Activity {
         //note.setWeather(weather.getText().toString());
         note.setWeather(weather.getText().toString());
         note.setKind(marks.getText().toString());
-        if(mood_number_edit.getText().toString().equals(String.valueOf(note.getMood())))
-            note.setMood(mood.getProgress()-100);
+        note.setMood(mood_value);
         note.setTemperature(27);
         note.setInshort(inshort.getText().toString());
         note.setLocation(location.getText().toString());
