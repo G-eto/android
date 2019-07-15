@@ -17,7 +17,7 @@
     <dimen name="edit_text_dialog_size">100dp</dimen>
     <dimen name="title_toolbar">70dp</dimen>
     <dimen name="title_toolbar_hsize">55dp</dimen>
-    <dimen name="markdown_preview_high">170dp</dimen>
+    <dimen name="markdown_preview_high">175dp</dimen>
 
     //fontSize
     <dimen name="datefont">30sp</dimen>
@@ -38,6 +38,8 @@
     <dimen name="margin_size">20dp</dimen>
     <dimen name="margin_size_top">10dp</dimen>
     <dimen name="text_paddindbutton_size">50dp</dimen>
+    <dimen name="margin_size_25dp">25dp</dimen>
+    <dimen name="margin_size_30dp">30dp</dimen>
 
     //button size
     <dimen name="buttonfont_size">30sp</dimen>

@@ -32,9 +32,11 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -92,10 +94,7 @@ public class EditActivity extends Activity {
     private ImageView mood_value_icon;
 
 // tools imageview
-    private ImageView tool_location;
-    private ImageView tool_weather;
-    private ImageView tool_inshort;
-    private ImageView tool_kind;
+    private ImageView tool_enter;
     private ImageView tool_mood;
     private ImageView tool_no_md;
     private ImageView tool_edit_and_md;
@@ -128,7 +127,15 @@ public class EditActivity extends Activity {
 
     public ISListConfig config;
 
-    MarkdownView markdownView;
+    public MarkdownView markdownView;
+
+    //buff
+    private int mood_value;
+
+    public ScrollView view1;
+    public EditText view2;
+    public int viewhigh;
+    public View line;
 
     final String tag = "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh:";
 
@@ -146,10 +153,7 @@ public class EditActivity extends Activity {
 
         markdownView = (MarkdownView) findViewById(R.id.edit_markdownView);
         //markdownView.loadMarkdown("![test](/storage/emulated/0/Android/data/com.example.sqlite2/cache/1563096438650.jpg)");
-        tool_location = findViewById(R.id.edit_tool_location_icon);
-        tool_weather = findViewById(R.id.edit_tool_weather_icon);
-        tool_inshort = findViewById(R.id.edit_tool_inshort_icon);
-        tool_kind = findViewById(R.id.edit_tool_kind_icon);
+        tool_enter = findViewById(R.id.edit_tool_enter_icon);
         tool_mood = findViewById(R.id.edit_tool_mood_icon);
         tool_no_md = findViewById(R.id.edit_tool_no_md);
         tool_edit_and_md = findViewById(R.id.edit_tool_and_md);
@@ -179,6 +183,63 @@ public class EditActivity extends Activity {
         mood_value_icon = findViewById(R.id.edit_mood_value_icon);
 
 
+        //tools
+
+        tool_mood.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                showSeekbarDialog();
+            }
+        });
+
+        tool_enter.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                inputNote.append("<br>\n");
+            }
+        });
+
+        // markdown src layout
+        view1 = findViewById(R.id.edit_markdown_ScrollView);
+        final ViewGroup.LayoutParams viewchange1 = view1.getLayoutParams();
+
+        //input layout
+        view2 = findViewById(R.id.edit_text);
+        final ViewGroup.LayoutParams viewchange2 = view2.getLayoutParams();
+
+        line = findViewById(R.id.edit_md_input_lines);
+
+        viewhigh = viewchange1.height + viewchange2.height;
+        tool_no_md.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("mdmdmdmdmdmd:","mdh:"+viewchange1.height+"inputh:"+viewchange2.height);
+                view1.setVisibility(View.GONE);
+                line.setVisibility(View.GONE);
+            }
+        });
+
+        tool_edit_and_md.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("mdmdmdmdmdmd:","mdh:"+viewchange1.height+"inputh:"+viewchange2.height);
+                view1.setVisibility(View.VISIBLE);
+                view2.setVisibility(View.VISIBLE);
+                line.setVisibility(View.VISIBLE);
+            }
+        });
+
+        tool_preview_md.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("mdmdmdmdmdmd:","mdh:"+viewchange1.height+"inputh:"+viewchange2.height);
+                view2.setVisibility(View.GONE);
+                line.setVisibility(View.GONE);
+            }
+        });
+
         ISNav.getInstance().init(new ImageLoader() {
             @Override
             public void displayImage(Context context, String path, ImageView imageView) {
@@ -186,7 +247,7 @@ public class EditActivity extends Activity {
             }
         });
 
-        image.setOnClickListener(new View.OnClickListener(){
+        tool_picture.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View view) {
@@ -212,7 +273,7 @@ public class EditActivity extends Activity {
                         // TitleBar背景色
                         .titleBgColor(Color.parseColor("#3F51B5"))
                         // 裁剪大小。needCrop为true的时候配置
-                        .cropSize(1, 1, 200, 200)
+                        .cropSize(1, 1, 350,350 )
                         .needCrop(true)
                         // 第一个是否显示相机，默认true
                         .needCamera(false)
@@ -290,23 +351,7 @@ public class EditActivity extends Activity {
             }
         });
 
-        mood.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                mood_number_edit.setText(String.valueOf(mood.getProgress()-100)+"°");
-//                mood_icon.setText(getMoodEmoji(mood.getProgress()-100));
-            }
 
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -349,6 +394,8 @@ public class EditActivity extends Activity {
             //note_id = db.getNotesCount();
             shouldUpdate = true;
             date.setText("今天");//日期
+            mood_number_edit.setText("0");
+            mood_value = 0;
             //inputNote.setText("bugbugbug");
         } else {
             note = db.getNote(note_id);
@@ -358,7 +405,8 @@ public class EditActivity extends Activity {
             inshort.setText(note.getInshort());
             location.setText(note.getLocation());
             marks.setText(note.getKind());
-            mood.setProgress(note.getMood()+100);
+            mood_number_edit.setText(note.getMood()+"°");
+            mood_value = note.getMood();
         }
     }
 
@@ -372,7 +420,7 @@ public class EditActivity extends Activity {
         note.setInshort(inshort.getText().toString());
         note.setLocation(location.getText().toString());
         note.setTemperature(27);
-        note.setMood(mood.getProgress()-100);
+        note.setMood(mood_value);
 
         //note.setWeather(weather.getText().toString());
         note.setNote(inputNote.getText().toString());
@@ -401,7 +449,8 @@ public class EditActivity extends Activity {
         //note.setWeather(weather.getText().toString());
         note.setWeather(weather.getText().toString());
         note.setKind(marks.getText().toString());
-        note.setMood(mood.getProgress()-100);
+        if(mood_number_edit.getText().toString().equals(String.valueOf(note.getMood())))
+            note.setMood(mood.getProgress()-100);
         note.setTemperature(27);
         note.setInshort(inshort.getText().toString());
         note.setLocation(location.getText().toString());
@@ -623,32 +672,31 @@ public class EditActivity extends Activity {
         AlertDialog.Builder alertDialogBuilderUserInput = new AlertDialog.Builder(EditActivity.this);
         alertDialogBuilderUserInput.setView(view);
 
-        final SeekBar seekBar = view.findViewById(R.id.edit_mood);
-        final EditText inputNote = view.findViewById(R.id.dialog_input);
-        final TextView dialogTitle = view.findViewById(R.id.dialog_title);
-        Typeface tf = Typeface.createFromAsset(getAssets(), "iconfont.ttf");
-        //dialogTitle.setText(button.getText());
-        dialogTitle.setTypeface(tf);
+        mood = view.findViewById(R.id.edit_mood);
+
+        final TextView mood_icon = view.findViewById(R.id.edit_mood_icon);
+        mood.setProgress(mood_value+100);
         boolean should = false;
-        inputNote.addTextChangedListener(new TextWatcher() {
+
+        mood.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                mood_number_edit.setText(String.valueOf(mood.getProgress()-100)+"°");
+                mood_icon.setText(getMoodEmoji(mood.getProgress()-100)+" "+ ( mood.getProgress() - 100) );
+                mood_value = mood.getProgress() - 100;
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
 
             }
 
             @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            public void onStopTrackingTouch(SeekBar seekBar) {
 
-            }
-
-            @Override
-
-            public void afterTextChanged(Editable editable) {
-
-                //长度发生变化，监听到输入的长度为 editText.getText().length()
-                dialogTitle.setText(String.valueOf("已输入"+inputNote.getText().length()) + "字");
             }
         });
+
         alertDialogBuilderUserInput
                 .setCancelable(false)
                 .setPositiveButton(should ? "update" : "save", new DialogInterface.OnClickListener() {
@@ -665,21 +713,21 @@ public class EditActivity extends Activity {
 
         final AlertDialog alertDialog = alertDialogBuilderUserInput.create();
         alertDialog.show();
-
-        alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Show toast message when no text is entered
-                if (TextUtils.isEmpty(inputNote.getText().toString())) {
-                    Toast.makeText(EditActivity.this, "Enter note!", Toast.LENGTH_SHORT).show();
-                    return;
-                } else {
-                    alertDialog.dismiss();
-                }
-                if (inputNote.getText() != null) {
-                    //textView.setText(inputNote.getText());
-                }
-            }
-        });
+//
+//        alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                // Show toast message when no text is entered
+//                if (TextUtils.isEmpty(inputNote.getText().toString())) {
+//                    Toast.makeText(EditActivity.this, "Enter note!", Toast.LENGTH_SHORT).show();
+//                    return;
+//                } else {
+//                    alertDialog.dismiss();
+//                }
+//                if (inputNote.getText() != null) {
+//                    //textView.setText(inputNote.getText());
+//                }
+//            }
+//        });
     }
 }

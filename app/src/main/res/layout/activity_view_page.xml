@@ -305,6 +305,7 @@
             android:layout_margin="@dimen/fab_margin"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            app:srcCompat="@android:drawable/ic_dialog_email" />
+            app:backgroundTint="@color/colorPrimary"
+            android:src="@drawable/pen" />
     </RelativeLayout>
 </LinearLayout>
