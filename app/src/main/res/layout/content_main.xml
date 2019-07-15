@@ -17,13 +17,14 @@
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"
+        android:background="@color/green_teal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/bg_pic"/>
 
     <TextView
         android:id="@+id/empty_notes_view"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="150dp"

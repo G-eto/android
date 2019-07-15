@@ -184,6 +184,7 @@ public class ViewPage extends Activity {
                 startActivity(intent);
             }
         });
+        share.setVisibility(View.INVISIBLE);
 
         Intent intent = getIntent();
         int data = intent.getIntExtra("note_id",-1);

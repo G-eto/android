@@ -117,6 +117,7 @@
                     android:id="@+id/page_kind_relative"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/edit_text_dialog_size"
                     android:layout_below="@id/page_text">
                     <TextView
                         android:id="@+id/page_kind_icon"

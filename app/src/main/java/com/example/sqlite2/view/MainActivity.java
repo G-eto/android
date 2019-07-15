@@ -2,6 +2,7 @@ package com.example.sqlite2.view;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.media.Image;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
@@ -23,6 +24,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -64,10 +66,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setStatusBarColor(Color.parseColor("#455399"));
         setContentView(R.layout.activity_main);
 
 //        Toolbar toolbar = findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
+
 
         //下拉刷新
         RefreshLayout refreshLayout = (RefreshLayout)findViewById(R.id.refreshLayout);

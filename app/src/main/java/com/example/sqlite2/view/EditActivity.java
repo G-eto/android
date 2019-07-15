@@ -1,6 +1,7 @@
 package com.example.sqlite2.view;
 
 import android.Manifest;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -211,13 +212,15 @@ public class EditActivity extends Activity {
 
         line = findViewById(R.id.edit_md_input_lines);
 
-        viewhigh = viewchange1.height + viewchange2.height;
+        viewhigh = viewchange1.height;
         tool_no_md.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.d("mdmdmdmdmdmd:","mdh:"+viewchange1.height+"inputh:"+viewchange2.height);
                 view1.setVisibility(View.GONE);
                 line.setVisibility(View.GONE);
+                view2.setMaxLines(10);
+                view2.setVisibility(View.VISIBLE);
             }
         });
 
@@ -225,6 +228,9 @@ public class EditActivity extends Activity {
             @Override
             public void onClick(View view) {
                 Log.d("mdmdmdmdmdmd:","mdh:"+viewchange1.height+"inputh:"+viewchange2.height);
+                viewchange1.height = viewhigh;
+                view2.setMaxLines(4);
+                view1.setLayoutParams(viewchange1);
                 view1.setVisibility(View.VISIBLE);
                 view2.setVisibility(View.VISIBLE);
                 line.setVisibility(View.VISIBLE);
@@ -237,6 +243,10 @@ public class EditActivity extends Activity {
                 Log.d("mdmdmdmdmdmd:","mdh:"+viewchange1.height+"inputh:"+viewchange2.height);
                 view2.setVisibility(View.GONE);
                 line.setVisibility(View.GONE);
+
+                viewchange1.height = ScrollView.LayoutParams.WRAP_CONTENT;
+                view1.setLayoutParams(viewchange1);
+                view1.setVisibility(View.VISIBLE);
             }
         });
 
@@ -273,7 +283,7 @@ public class EditActivity extends Activity {
                         // TitleBar背景色
                         .titleBgColor(Color.parseColor("#3F51B5"))
                         // 裁剪大小。needCrop为true的时候配置
-                        .cropSize(1, 1, 350,350 )
+                        .cropSize(1, 1, 300,300 )
                         .needCrop(true)
                         // 第一个是否显示相机，默认true
                         .needCamera(false)
@@ -530,6 +540,7 @@ public class EditActivity extends Activity {
         final TextView dialogTitle = view.findViewById(R.id.dialog_title);
         Typeface tf = Typeface.createFromAsset(getAssets(), "iconfont.ttf");
         //dialogTitle.setText(button.getText());
+
         dialogTitle.setTypeface(tf);
         boolean should = false;
         inputNote.addTextChangedListener(new TextWatcher() {

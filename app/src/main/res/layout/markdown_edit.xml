@@ -100,62 +100,28 @@
         android:id="@+id/edit_markdown_ScrollView"
         android:layout_width="match_parent"
         android:layout_height="@dimen/markdown_preview_high"
+        android:layout_above="@id/edit_input_ScrollView"
         android:layout_below="@id/RelativeLayout_edit_top">
-        <us.feras.mdv.MarkdownView
-            android:id="@+id/edit_markdownView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-        </us.feras.mdv.MarkdownView>
-    </ScrollView>
-
-    <View
-        android:id="@+id/edit_md_input_lines"
-        android:layout_width="match_parent"
-        android:layout_marginTop="1dp"
-        android:layout_height="4dp"
-        android:layout_below="@id/edit_markdown_ScrollView"
-        android:background="@color/hint_enter_note"/>
-
-    <!--input-->
-    <ScrollView
-        android:id="@+id/edit_input_ScrollView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/edit_md_input_lines"
-        android:layout_above="@+id/edit_tools">
         <RelativeLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
-            <EditText
-                android:id="@+id/edit_text"
+            <us.feras.mdv.MarkdownView
+                android:id="@+id/edit_markdownView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/near_padding_size"
-                android:hint="欢迎使用markdown写日记"
-                android:layout_marginLeft="@dimen/margin_size"
-                android:layout_marginRight="@dimen/margin_size"
-                android:background="@android:color/transparent"
-                android:layout_marginBottom="5dp"
-                android:paddingTop="5dp"
-                android:gravity="top"
-                android:inputType="textCapSentences|textMultiLine"
-                android:textColorHint="@color/hint_enter_note"
-                />
+                android:layout_height="wrap_content">
+            </us.feras.mdv.MarkdownView>
+
             <RelativeLayout
                 android:id="@+id/edit_weather_relative"
-                android:layout_marginTop="@dimen/margin_size_30dp"
+                android:layout_marginTop="@dimen/edit_text_high_size"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/edit_text">
+                android:layout_below="@id/edit_markdownView">
                 <ImageView
                     android:id="@+id/edit_weather_icon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin_size_top"
-                    android:layout_marginLeft="@dimen/margin_size_top"
-                    android:layout_marginRight="@dimen/margin_size_top"
+                    android:layout_margin="@dimen/margin_size_top"
                     android:layout_alignParentStart="true"
                     android:src="@drawable/weather_72"
                     />
@@ -167,7 +133,7 @@
                     android:layout_toRightOf="@id/edit_weather_icon"
                     android:layout_alignBottom="@id/edit_weather_icon"
                     android:textSize="@dimen/textfont"
-                    android:text="天气"/>
+                    android:hint="天气怎么样"/>
             </RelativeLayout>
 
 
@@ -180,11 +146,9 @@
                     android:id="@+id/edit_location_icon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="@dimen/margin_size_top"
-                    android:layout_marginTop="@dimen/margin_size_top"
-                    android:layout_marginLeft="@dimen/margin_size_top"
+                    android:layout_margin="@dimen/margin_size_top"
                     android:layout_alignParentStart="true"
-                    android:src="@drawable/location72"
+                    android:src="@drawable/location64"
                     />
                 <TextView
                     android:id="@+id/edit_location"
@@ -194,7 +158,7 @@
                     android:layout_alignBottom="@id/edit_location_icon"
                     android:layout_toRightOf="@id/edit_location_icon"
                     android:textSize="@dimen/textfont"
-                    android:text="北京南口"/>
+                    android:hint="今天去哪儿了"/>
             </RelativeLayout>
 
 
@@ -207,10 +171,8 @@
                     android:id="@+id/edit_mark_icon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="@dimen/margin_size_top"
-                    android:layout_marginTop="@dimen/margin_size_top"
-                    android:layout_marginLeft="@dimen/margin_size_top"
-                    android:src="@drawable/kinds72"
+                    android:layout_margin="@dimen/margin_size_top"
+                    android:src="@drawable/kinds65"
                     android:layout_alignParentStart="true"
                     />
                 <TextView
@@ -221,7 +183,7 @@
                     android:layout_alignBottom="@id/edit_mark_icon"
                     android:layout_toRightOf="@id/edit_mark_icon"
                     android:textSize="@dimen/textfont"
-                    android:text="日记"/>
+                    android:hint="加个标签吧"/>
             </RelativeLayout>
 
             <RelativeLayout
@@ -234,11 +196,9 @@
                     android:id="@+id/edit_inshort_icon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="@dimen/margin_size_top"
-                    android:layout_marginTop="@dimen/margin_size_top"
-                    android:layout_marginLeft="@dimen/margin_size_top"
+                    android:layout_margin="@dimen/margin_size_top"
                     android:layout_alignParentStart="true"
-                    android:src="@drawable/message_72"
+                    android:src="@drawable/message_64"
                     />
                 <TextView
                     android:id="@+id/edit_inshort"
@@ -248,16 +208,51 @@
                     android:layout_alignBottom="@id/edit_inshort_icon"
                     android:layout_toRightOf="@id/edit_inshort_icon"
                     android:textSize="@dimen/textfont"
-                    android:text="今天怎么样"/>
+                    android:hint="今天怎么样"/>
             </RelativeLayout>
 
         </RelativeLayout>
     </ScrollView>
+
     <View
+        android:id="@+id/edit_md_input_lines"
         android:layout_width="match_parent"
-        android:layout_height="2px"
-        android:layout_below="@id/edit_input_ScrollView"
-        android:background="#000000"/>
+        android:layout_marginTop="2dp"
+        android:layout_height="10dp"
+        android:layout_below="@id/edit_markdown_ScrollView"
+        android:layout_above="@id/edit_input_ScrollView"
+        android:background="@color/hint_enter_note"/>
+
+    <!--input-->
+    <ScrollView
+        android:id="@+id/edit_input_ScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/edit_tools">
+            <EditText
+                android:id="@+id/edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_size_top"
+                android:hint="欢迎使用markdown写日记"
+                android:layout_marginLeft="@dimen/margin_size_top"
+                android:layout_marginRight="@dimen/margin_size_top"
+
+                android:layout_marginBottom="5dp"
+                android:paddingTop="5dp"
+                android:gravity="top"
+                android:maxLines="4"
+                android:lines="4"
+                android:background="@drawable/bg_edittext"
+                android:inputType="textCapSentences|textMultiLine"
+                android:textColorHint="@color/hint_enter_note"
+                />
+    </ScrollView>
+    <!--<View-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="2px"-->
+        <!--android:layout_below="@id/edit_input_ScrollView"-->
+        <!--android:background="#000000"/>-->
     <!--tools button-->
     <LinearLayout
         android:id="@+id/edit_tools"
@@ -289,7 +284,7 @@
             android:layout_gravity="center_vertical"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:src="@drawable/doublepage72"/>
+            android:src="@drawable/doublepage64"/>
 
         <ImageView
             android:id="@+id/edit_tool_mood_icon"
