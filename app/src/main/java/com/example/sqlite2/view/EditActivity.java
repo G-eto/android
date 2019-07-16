@@ -283,7 +283,7 @@ public class EditActivity extends Activity {
                         // TitleBar背景色
                         .titleBgColor(Color.parseColor("#3F51B5"))
                         // 裁剪大小。needCrop为true的时候配置
-                        .cropSize(1, 1, 300,300 )
+                        .cropSize(1, 1, 240,240 )
                         .needCrop(true)
                         // 第一个是否显示相机，默认true
                         .needCamera(false)

@@ -17,7 +17,7 @@ import java.util.List;
 
 /**
  * Created by zhipeng on 16/1/13.
- * 图文混排编辑器
+ * 图文混排编辑器  //not use
  */
 public class PictureAndTextEditorView extends android.support.v7.widget.AppCompatEditText {
     private final String TAG = "PATEditorView";

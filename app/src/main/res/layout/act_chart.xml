@@ -23,6 +23,7 @@
         android:layout_height="200dp"/>
 
     <LinearLayout
+        android:layout_marginTop="@dimen/top_menu2_Hsize"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
@@ -38,9 +39,4 @@
             android:layout_width="0dp"
             android:src="@drawable/about_96"/>
     </LinearLayout>
-    <TextView
-        android:id="@+id/analys"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/markfont"/>
 </LinearLayout>

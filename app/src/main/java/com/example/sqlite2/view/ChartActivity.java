@@ -1,6 +1,7 @@
 package com.example.sqlite2.view;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import com.example.sqlite2.R;
@@ -10,6 +11,7 @@ import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
@@ -17,6 +19,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.sqlite2.database.DatabaseHelper;
 import com.example.sqlite2.database.model.Note;
@@ -67,7 +70,7 @@ public class ChartActivity extends Activity {
     private void setLists() {
         lists.clear();
         int number = db.getNotesCount();
-        for (int i = 1; i < 10 && i < number; i++) {
+        for (int i = 0; i < 10 && i < number; i++) {
             int value = ((int) (notesList.get(i).getWordnumber()));
             lists.add(value);
         }
@@ -83,12 +86,37 @@ public class ChartActivity extends Activity {
         notesList.addAll(db.getAllNotesDatas());
 
         getDataBtn = findViewById(R.id.getData);
-        getDataBtn.setOnClickListener(new View.OnClickListener() {
+
+        getDataBtn.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View view) {
-                words.setText(str);
+            public void onClick(View v)
+            {
+                //    通过AlertDialog.Builder这个类来实例化我们的一个AlertDialog的对象
+                AlertDialog.Builder builder = new AlertDialog.Builder(ChartActivity.this);
+                //    设置Title的图标
+                builder.setIcon(R.drawable.about);
+                //    设置Title的内容
+                builder.setTitle("关于");
+                //    设置Content来显示一个信息
+                builder.setMessage(str);
+                //    设置一个PositiveButton
+                builder.setPositiveButton("确定", new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which)
+                    {
+                        //Toast.makeText(ChartActivity.this, "positive: " + which, Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                //    显示出该对话框
+                builder.show();
             }
         });
+
+
+
         back = findViewById(R.id.analys_back);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,7 +126,7 @@ public class ChartActivity extends Activity {
         });
         chartLyt = (LinearLayout) findViewById(R.id.chart);
 //        mTf = Typeface.createFromAsset(getAssets(), "OpenSans-Bold.ttf");
-        words = findViewById(R.id.analys);
+        //words = findViewById(R.id.analys);
 
         drawTheChart();
         drawTheChartByMPAndroid();
@@ -110,18 +138,33 @@ public class ChartActivity extends Activity {
             mood += notesList.get(i).getMood();
         }
 
-        String mood_str;
-        int mood_ave = (99+mood)/(50*notesList.size());
-        switch (mood_ave){
-            case 0: mood_str = "\n山重水复疑无路，柳暗花明又一村\n";break;
-            case 1: mood_str = "\n不识庐山真面目，只缘身在此山中\n";break;
-            case 2: mood_str = "\n儿大诗书女丝麻，公但读书煮春茶\n";break;
-            case 3: mood_str = "\n春风得意马蹄疾, 一日看尽长安花\n";break;
-            default:mood_str = "\n两个黄鹂鸣翠柳，一行白鹭上青天\n";break;
+        String mood_str = "\n  行到水穷处，坐看云起时\n";
+        int mood_ave;
+        float mood_avef = 0;
+        if(notesList.size() > 0) {
+            mood_ave = (99 + mood) / (50 * notesList.size());
+            mood_avef = mood/notesList.size();
+            switch (mood_ave) {
+                case 0:
+                    mood_str = "\n  山重水复疑无路，柳暗花明又一村\n";
+                    break;
+                case 1:
+                    mood_str = "\n  不识庐山真面目，只缘身在此山中\n";
+                    break;
+                case 2:
+                    mood_str = "\n  儿大诗书女丝麻，公但读书煮春茶\n";
+                    break;
+                case 3:
+                    mood_str = "\n  春风得意马蹄疾, 一日看尽长安花\n";
+                    break;
+                default:
+                    mood_str = "\n  两个黄鹂鸣翠柳，一行白鹭上青天\n";
+                    break;
+            }
         }
-        str = "    这些日子里,你写了"+notesList.size()+"篇日记，"
+        str = "  这些日子里,你写了"+notesList.size()+"篇日记，"
                 + wordnumber +"个字记录你的点点滴滴，"
-                +  mood_str + "量化的心情指数:"+(mood/notesList.size())+"是怎样的感觉呢?";
+                +  mood_str + "  量化的心情指数:"+mood_avef+"是怎样的感觉呢?";
 
 
     }
@@ -440,4 +483,6 @@ public class ChartActivity extends Activity {
 //                break;
 //        }
 //    }
+
+
 }

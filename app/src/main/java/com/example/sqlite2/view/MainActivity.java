@@ -150,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, ChartActivity.class);
                 startActivity(intent);
 
-                Toast.makeText(MainActivity.this,"action_settings",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(MainActivity.this,"action_settings",Toast.LENGTH_SHORT).show();
             }
         });
         //设置移除图片  如果不设置会默认使用系统灰色的图标
