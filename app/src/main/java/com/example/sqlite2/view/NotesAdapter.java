@@ -68,7 +68,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.MyViewHolder
         Note note = notesList.get(position);
         String str = "";
         if(note.getInshort().length() > 0)
-            str = "**"+note.getInshort()+"**<br>";
+            str = "**"+note.getInshort()+"**\n";
         if(note.getWordnumber() > 150)
             holder.item_markdown.loadMarkdown((str+note.getNote()).substring(0, 150)+"...");
         else

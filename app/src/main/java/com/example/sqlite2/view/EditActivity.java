@@ -138,6 +138,8 @@ public class EditActivity extends Activity {
     public int viewhigh;
     public View line;
 
+    //private int pic_number = 0;
+
     final String tag = "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh:";
 
     @Override

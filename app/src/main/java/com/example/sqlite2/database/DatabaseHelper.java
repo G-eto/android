@@ -87,9 +87,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 new String[]{String.valueOf(id)},
                 null, null, null, null);
 
-        if (cursor != null)
+        if (cursor.getCount() > 0)
             cursor.moveToFirst();
-
+        else
+            return new Note(-1,null,null,0,null,null,null,null,null,0,null,0);
         // prepare note object
         Note note = new Note(
                 cursor.getInt(cursor.getColumnIndex(Note.COLUMN_ID)),

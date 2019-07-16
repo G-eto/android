@@ -197,13 +197,20 @@ public class ViewPage extends Activity {
             public void onPageFling(char lr) {
                 if(lr == 'R' && note_id < dbcount){
                     Intent intent = new Intent(ViewPage.this, ViewPage.class);
-                    intent.putExtra("note_id",note_id + 1);
+                    int op = 1;
+                    while(db.getNote(note_id+op).getId() == -1)
+                        op++;
+                    intent.putExtra("note_id",note_id + op);
                     startActivity(intent);
                     overridePendingTransition(R.anim.right_out, R.anim.left_in);
                 }
                 else if(lr == 'L' && note_id > 1){
                     Intent intent = new Intent(ViewPage.this, ViewPage.class);
-                    intent.putExtra("note_id",note_id - 1);
+                    int op = 1;
+                    while(db.getNote(note_id-op).getId() == -1)
+                        op++;
+
+                    intent.putExtra("note_id",note_id - op);
                     startActivity(intent);
                     overridePendingTransition(R.anim.right_in, R.anim.left_out);
                 }
@@ -228,7 +235,7 @@ public class ViewPage extends Activity {
 //            }
 //        });
 
-        View test = findViewById(R.id.RelativeLayout_page);
+        View test = findViewById(R.id.page_text);
         test.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
