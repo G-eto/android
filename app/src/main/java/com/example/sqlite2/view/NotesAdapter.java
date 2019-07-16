@@ -66,10 +66,13 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.MyViewHolder
     }
     public void onBindViewHolder(MyViewHolder holder, int position){
         Note note = notesList.get(position);
-        if(note.getWordnumber() > 100)
-            holder.item_markdown.loadMarkdown(("**"+note.getInshort()+"**<br>"+note.getNote()).substring(0, 98)+"...");
+        String str = "";
+        if(note.getInshort().length() > 0)
+            str = "**"+note.getInshort()+"**<br>";
+        if(note.getWordnumber() > 150)
+            holder.item_markdown.loadMarkdown((str+note.getNote()).substring(0, 150)+"...");
         else
-            holder.item_markdown.loadMarkdown("**"+note.getInshort()+"**<br>"+note.getNote());
+            holder.item_markdown.loadMarkdown(str+note.getNote());
         //holder.dot.setText(Html.fromHtml("&#8226;"));
         holder.timestamp.setText(formatDate(note.getTimestamp()));
         holder.weather.setText("☀"+note.getWeather()+"    ");
