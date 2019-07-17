@@ -66,9 +66,6 @@ import us.feras.mdv.MarkdownView;
 
 import static android.support.constraint.Constraints.TAG;
 
-/**
- * Created by zhipeng on 16/1/13.
- */
 public class EditActivity extends Activity {
 
     private PictureAndTextEditorView mEditText;
@@ -101,7 +98,8 @@ public class EditActivity extends Activity {
     private ImageView tool_edit_and_md;
     private ImageView tool_preview_md;
     private ImageView tool_picture;
-
+    private ImageView tool_xing;
+    private ImageView tool_underline;
 
     ImageView image1;
 
@@ -162,6 +160,8 @@ public class EditActivity extends Activity {
         tool_edit_and_md = findViewById(R.id.edit_tool_and_md);
         tool_preview_md = findViewById(R.id.edit_tool_md_preview);
         tool_picture = findViewById(R.id.edit_tool_image_icon);
+        tool_underline = findViewById(R.id.edit_tool_underline_icon);
+        tool_xing = findViewById(R.id.edit_tool_xing_icon);
 
         Log.d(tag, "hello edit2");
         inputNote = findViewById(R.id.edit_text);
@@ -200,7 +200,23 @@ public class EditActivity extends Activity {
 
             @Override
             public void onClick(View view) {
-                inputNote.append("<br>\n");
+                insertText(inputNote, "#");
+            }
+        });
+
+        tool_xing.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                insertText(inputNote, "*");
+            }
+        });
+
+        tool_underline.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                insertText(inputNote, "___");
             }
         });
 
@@ -652,7 +668,8 @@ public class EditActivity extends Activity {
             List<String> pathList = data.getStringArrayListExtra("result");
             for (String path : pathList) {
                 Log.d("picpath:",path);
-                inputNote.append("![](file:///"+path+")" + "\n");
+                insertText(inputNote, "  \n![](file:///"+path+")  \n");
+                //inputNote.append("![](file:///"+path+")" + "\n");
             }
         }
     }
@@ -741,5 +758,16 @@ public class EditActivity extends Activity {
 //                }
 //            }
 //        });
+    }
+    private int getEditTextCursorIndex(EditText editText){
+        return editText.getSelectionStart();
+    }
+    //向光标处插入文本
+    private void insertText(EditText editText,String string){
+        editText.getText().insert(getEditTextCursorIndex(editText),string);
+    }
+    //光标左移
+    private void setEditTextCusorRollLeft(EditText editText,int rollLeft){
+        editText.setSelection(getEditTextCursorIndex(editText)-rollLeft);
     }
 }
