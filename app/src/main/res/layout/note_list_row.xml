@@ -82,6 +82,26 @@
             <!--android:text=""-->
             <!--android:textColor="@color/note_list_text"-->
             <!--android:textSize="@dimen/note_list_text" />-->
+
+        <!--<View-->
+            <!--android:id="@+id/item_markdown_textview"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:maxLines="7">-->
+            <!--<us.feras.mdv.MarkdownView-->
+                <!--android:id="@+id/item_markdown"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_below="@id/state"-->
+                <!--android:layout_marginTop="@dimen/margin_size_top"-->
+                <!--android:layout_marginBottom="@dimen/margin_size_top"-->
+                <!--android:layout_toRightOf="@id/timestamp"-->
+                <!--android:text=""-->
+                <!--android:textColor="@color/note_list_text"-->
+                <!--android:textSize="@dimen/note_list_text">-->
+            <!--</us.feras.mdv.MarkdownView>-->
+        <!--</View>-->
+
         <us.feras.mdv.MarkdownView
             android:id="@+id/item_markdown"
             android:layout_width="wrap_content"
@@ -94,6 +114,7 @@
             android:textColor="@color/note_list_text"
             android:textSize="@dimen/note_list_text">
         </us.feras.mdv.MarkdownView>
+
 
 
         <TextView

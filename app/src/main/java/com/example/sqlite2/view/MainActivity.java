@@ -129,8 +129,6 @@ public class MainActivity extends AppCompatActivity {
         //recyclerView.addItemDecoration(new MyDividerItemDecoration(this, LinearLayoutManager.VERTICAL, 16));
         recyclerView.setAdapter(mAdapter);
 
-
-
         mToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);//利用Toolbar代替ActionBar
         //设置导航Button点击事件

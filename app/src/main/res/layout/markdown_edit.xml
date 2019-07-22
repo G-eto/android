@@ -308,7 +308,22 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:src="@drawable/enter72"/>
+            android:src="@drawable/font_type64"/>
+        <ImageView
+            android:id="@+id/edit_tool_underline_icon"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/underline72"/>
+        <ImageView
+            android:id="@+id/edit_tool_xing_icon"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/font_type_xing_72"/>
+
     </LinearLayout>
 
 </RelativeLayout>
