@@ -9,7 +9,7 @@
 使用sqlite存储数据，markdownview展示日记文本
 ## 数据库
 一张日记表，基本字段有：  
- ![](android/picture/db.png)
+![](https://github.com/G-eto/android/blob/master/picture/db.png)
 
 ## 基本功能
 ### 1. 日记本：
@@ -25,6 +25,10 @@
 2. 日记信息录入
 
 ## 截图
+![](https://github.com/G-eto/android/blob/master/picture/%E5%88%86%E6%9E%90.jpg)
+![](https://github.com/G-eto/android/blob/master/picture/%E6%9F%A5%E7%9C%8B.jpg)
+![](https://github.com/G-eto/android/blob/master/picture/%E7%BC%96%E8%BE%91.jpg)
+![](https://github.com/G-eto/android/blob/master/picture/%E9%A6%96%E9%A1%B5.jpg)
 ## 总结
 在这三周时间里，只能说大概了解了安卓开发流程与使用到的方面，对其中的细节以及其他未接触的地方还需要阅读资料与实践。
 
